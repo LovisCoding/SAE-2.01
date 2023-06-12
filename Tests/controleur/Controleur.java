@@ -4,13 +4,11 @@
 
 package controleur;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.awt.Graphics;
 
-import modele.LireFichier;
-import modele.GroupIles;
-import modele.Ile;
+import modele.*;
+
+import javax.swing.ImageIcon;
 
 import vue.FrameAccueil;
 
@@ -20,13 +18,15 @@ public class Controleur
 {
 	private FrameAccueil 	frameAccueil;
 	private LireFichier 	lf;
-	private GroupIles 		gpIles;
+	private Graphe 			graphe;
+	private Pioche 			pioche;
 
 	public Controleur() 
 	{
-		this.lf 			= new LireFichier("./data/data.txt");
+		this.graphe 		= new Graphe("graphe");
+		this.lf 			= new LireFichier("./data/data.txt", this);
 		this.lf.lire();
-		this.gpIles 		= this.lf.getGroupIles();
+		this.pioche 		= new Pioche();
 
 		this.frameAccueil 	= new FrameAccueil(this);
 		
@@ -35,22 +35,38 @@ public class Controleur
 
 	public static void main(String args[])
 	{
-		
+		Controleur ctrl = new Controleur();
 
-		new Controleur();
-
+		System.out.println("Nombre d'arete : " + ctrl.getGraphe().getEnsArete().size());
+		System.out.println("Nombre d'ile : " + ctrl.getGraphe().getEnsIle().size());
 	}
+	
 	public void Solo()
 	{
 		this.frameAccueil.Solo();
 	}
+
 	public void Multi()
 	{
 		this.frameAccueil.Solo();
 	}
-	public GroupIles getGroupIles()
+
+	public ImageIcon piocher()
 	{
-		return this.gpIles;
+		return this.pioche.piocher();
+	}
+	public int taillePioche()
+	{
+		return this.pioche.taillePioche();
+	}
+	public boolean estVidePioche()
+	{
+		return this.pioche.estVide();
+	}
+
+	public Graphe getGraphe() 
+	{
+		return this.graphe;
 	}
 }
 

@@ -1,21 +1,21 @@
 package modele;
-
-import javax.swing.ImageIcon;
-
+import java.awt.Toolkit;
+import java.awt.Image;
 /**
  * Iles
  */
 public class Ile 
 {
-	private String 	nom;
+	private String 		nom;
 	private String 		couleur;
 	private int 		coCentreX;
 	private int 		coCentreY;
 	private int 		posImageX;
 	private int 		posImageY;
-	private ImageIcon 	image;
+	private int 		groupIles;
+	private Image 		image;
 
-	public Ile(String nom, String couleur, int coCentreX, int coCentreY, int posImageX, int posImageY) 
+	public Ile(String nom, String couleur, int coCentreX, int coCentreY, int posImageX, int posImageY, int groupIles) 
 	{
 		this.nom 		= nom;
 		this.couleur 	= couleur;
@@ -23,33 +23,20 @@ public class Ile
 		this.coCentreY 	= coCentreY;
 		this.posImageX 	= posImageX;
 		this.posImageY 	= posImageY;
-		this.image 		= new ImageIcon("./data/images/"+this.nom+".png");
+		this.groupIles 	= groupIles;
+		this.image 		= Toolkit.getDefaultToolkit().getImage("./images/Iles/"+this.nom+".png");
+		
 	}
 
-	public String getNom() 
-	{
-		return this.nom;
-	}
+	public String getNom() {return this.nom;}
 
-	public String getCouleur() 
-	{
-		return this.couleur;
-	}
+	public String getCouleur() {return this.couleur;}
 
-	public int getCoCentreX() 
-	{
-		return this.coCentreX;
-	}
+	public int getCoCentreX() {return this.coCentreX;}
 
-	public int getCoCentreY() 
-	{
-		return this.coCentreY;
-	}
+	public int getCoCentreY() {return this.coCentreY;}
 
-	public int getPosImageX() 
-	{
-		return this.posImageX;
-	}
+	public int getPosImageX() {return this.posImageX;}
 
 	public int getPosImageY() 
 	{
@@ -58,11 +45,9 @@ public class Ile
 	public String toString() 
 	{
 		return "Ile [nom=" + nom + ", couleur=" + couleur + ", coCentreX=" + coCentreX + ", coCentreY=" + coCentreY
-				+ ", posImageX=" + posImageX + ", posImageY=" + posImageY + "]";
+				+ ", posImageX=" + posImageX + ", posImageY=" + posImageY + " groupIles = " + groupIles +"]";
 	}
-	public ImageIcon getImage() 
-	{
-		return this.image;
-	}
+	public Image getImage() {return this.image;}
 
+	public int getGroupIles() {return this.groupIles;}
 }

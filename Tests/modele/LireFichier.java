@@ -3,7 +3,6 @@
 */
 package modele;
 
-import java.io.FileReader;
 import java.util.Scanner;
 import java.io.FileNotFoundException;
 import java.util.List;
@@ -11,17 +10,21 @@ import java.util.ArrayList;
 
 import java.io.File;
 
+import controleur.Controleur;
+
 public class LireFichier 
 {
-	private String 			nomFichier;
-	private ArrayList<Ile> 	iles;
-	private GroupIles 		groupIles;
+	private String 			 nomFichier;
+	private ArrayList<Ile> 	 lstIles;
+	private ArrayList<Arete> lstAretes;
+	private Controleur 		 ctrl;
 
-	public LireFichier(String nomFichier)
+	public LireFichier(String nomFichier, Controleur ctrl)
 	{
-		this.nomFichier = nomFichier;
-		this.iles 		= new ArrayList<Ile>();
-		this.groupIles 	= new GroupIles();
+		this.nomFichier 	= nomFichier;
+		this.lstIles 		= new ArrayList<Ile>  ();
+		this.lstAretes		= new ArrayList<Arete>();
+		this.ctrl 			= ctrl;
 	}
 
 	public void lire()
@@ -41,47 +44,84 @@ public class LireFichier
 				String couleur	= "";
 				int coCentreX	= 0;
 				int coCentreY 	= 0;
-				int posImageX	= 0;	
+				int posImageX	= 0;
 				int posImageY	= 0;
-				int cpt 		= 0;
+				int groupIle 	= 1;			// va mettre un numero de Group d'iles à une ile
+				int numArete	= 0;
+
+				boolean lineArete = false;
+
 			while (sc.hasNextLine())
 			{
 
-				cpt++;
-				String line = sc.nextLine();
 				
+				String line = sc.nextLine();
 
-				if (line.equals("		Centre			Position image	"	    ))    	{line = sc.nextLine();}
-				if (line.equals("		x	y		x	y"	    ))    	{line = sc.nextLine();}
-				if (line.equals("						"	    ))    	
+
+				if (line.equals("		Centre			Position image	"	))    	{line = sc.nextLine();}
+				if (line.equals("		x	y		x	y"	   				))    	{line = sc.nextLine();}
+				if (line.equals("\t\t\t\t\t\t"	   							))
 				{
 					line = sc.nextLine();
-					this.groupIles.ajouterGroupe(this.iles);
-					this.iles = new ArrayList<Ile>();
+					groupIle++;
 				}
 				
+				if (line.equals("[ARETE]"))
+					{
+					lineArete = true;
+					line = sc.nextLine();
+					}
+					
 				String[] parts = line.split("\t");
-				System.out.println(parts[0]	+ " 1: " + parts[1] + " 2: " + parts[2] + " 3: " + parts[3] + " 4: " + parts[5] + "5:" + parts[6]);
-				nom 	  	= parts[0];
-				couleur	   	= parts[1];
-				coCentreX	= Integer.parseInt(parts[2]);
-				coCentreY 	= Integer.parseInt(parts[3]);
-				posImageX	= Integer.parseInt(parts[5]);		//On saute le 4 car il s'agit d'une tabulation
-				posImageY	= Integer.parseInt(parts[6]);
+				if (!lineArete)
+				{
+					
+					System.out.println(parts[0]	+ " 1: " + parts[1] + " 2: " + parts[2] + " 3: " + parts[3] + " 4: " + parts[5] + "5:" + parts[6]);
+					nom 	  	= parts[0];
+					couleur	   	= parts[1];
+					coCentreX	= Integer.parseInt(parts[2]);
+					coCentreY 	= Integer.parseInt(parts[3]);
+					posImageX	= Integer.parseInt(parts[5]);		//On saute l'emplacement 4 car il s'agit d'une tabulation
+					posImageY	= Integer.parseInt(parts[6]);
 
-				this.iles.add(new Ile(nom, couleur, coCentreX, coCentreY, posImageX, posImageY));
-				
-				
-
+				this.ctrl.getGraphe().ajouterIles(new Ile(nom, couleur, coCentreX, coCentreY, posImageX, posImageY, groupIle));
 				}
-			
-				
-			
+				else
+				{
+					numArete++;
+					Ile ile1 = null;
+					Ile ile2 = null;
+					for (Ile i : this.ctrl.getGraphe().getEnsIle()) 
+					{
+						System.out.println(i.getNom());
+						if (parts[0].equals(i.getNom()))
+						{
+							ile1 = i;
+						}
+						if (parts[1].equals(i.getNom()))
+						{
+							ile2=i;
+						}
+					}
+					System.out.println(numArete + " " + ile1.getNom() + " " + ile2.getNom());
+					this.ctrl.getGraphe().ajouterArete(new Arete(numArete,ile1,ile2));
+				}
+
+			}
+
 			sc.close();
-			for ( Ile i : this.iles)
+			for ( Ile i : this.ctrl.getGraphe().getEnsIle())
 			{
 				System.out.println(i.toString());
 			}
+			for (Arete a : this.ctrl.getGraphe().getEnsArete())
+			{
+				System.out.println(a.toString());
+			}
+
+			System.out.println("Nombre d'arete : " + ctrl.getGraphe().getEnsArete().size());
+			System.out.println("Nombre d'ile : " + ctrl.getGraphe().getEnsIle().size());
+		
 		}
 
 		/*-----------------------------------------------------------------------------------------------------------------------*/
@@ -91,6 +131,6 @@ public class LireFichier
 		catch (FileNotFoundException e) {System.out.println("Fichier non trouvé");}
 	}
 	
-	public List<Ile> getLstIles () 		{return this.iles;}
-	public GroupIles getGroupIles () 	{return this.groupIles;}
+	public List<Ile> 	getLstIles () 		{return this.lstIles  ;}
+	public List<Arete> 	getLstArete () 		{return this.lstAretes;}
 }

@@ -9,15 +9,13 @@ import controleur.Controleur;
 
 public class PanelAccueil extends JPanel implements ActionListener
 {
-	private Controleur    ctrl;
-	private JPanel pnlAccueil;
-	private JButton btnSolo;
-	private JButton btnMulti;
+	private Controleur  ctrl;
+	private JPanel 		pnlAccueil;
+	private JButton 	btnSolo;
+	private JButton 	btnMulti;
 
 	public PanelAccueil(Controleur ctrl) 
-	{
-
-	
+	{	
 		/*-------------------------*/
 		/* Création des composants */
 		/*-------------------------*/
@@ -27,8 +25,6 @@ public class PanelAccueil extends JPanel implements ActionListener
 
 		this.setLayout(new GridLayout(2,1));
 		
-
-
 		/*-------------------------------*/
 		/* positionnement des composants */
 		/*-------------------------------*/
@@ -44,20 +40,12 @@ public class PanelAccueil extends JPanel implements ActionListener
 		/*-------------------------------*/
 		this.btnSolo.addActionListener(this);
 		this.btnMulti.addActionListener(this);
-
-
-	
 	}
 	
 	public void actionPerformed(ActionEvent e)
 	{
-		if(e.getSource() == this.btnSolo)
-		{
-			this.ctrl.Solo();
-		}
-		if (e.getSource() == this.btnMulti)
-		{
-			this.ctrl.Multi();
-		}
+		if(e.getSource() == this.btnSolo) {this.ctrl.Solo();}
+
+		if (e.getSource() == this.btnMulti) {this.ctrl.Multi();}
 	}
 }

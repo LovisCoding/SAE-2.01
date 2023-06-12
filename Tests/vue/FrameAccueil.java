@@ -11,16 +11,16 @@ import java.awt.*;
 
 public class FrameAccueil extends JFrame
 {
-	Controleur    ctrl;
-	PanelAccueil pnlAccueil;
-	PanelSolo pnlSolo;
+	Controleur    	ctrl;
+	PanelAccueil 	pnlAccueil;
+	PanelIles 		pnlSolo;
 
 	public FrameAccueil(Controleur ctrl)
 	{
 		this.ctrl = ctrl;
 		this.setTitle   ( "Jouer" );
-		this.setLocation(0, 0); // Localisation
-		this.setSize    (200, 200); // Taille
+		this.setLocation(500, 250 ); // Localisation
+		this.setSize    (200, 200 ); // Taille
 
 		this.setLayout(new FlowLayout());
 
@@ -35,7 +35,7 @@ public class FrameAccueil extends JFrame
 		/* Positionnement des composants */
 		/*-------------------------------*/
 
-			this.add(pnlAccueil, BorderLayout.CENTER);
+		this.add(pnlAccueil, BorderLayout.CENTER);
 
 		/*-------------------------------*/
 		/*         Finalisation          */
@@ -46,16 +46,17 @@ public class FrameAccueil extends JFrame
 		this.setVisible( true );
 		
 	}
+
 	public void Solo()
 	{
 		
 		new FrameSolo(this.ctrl);
 		this.dispose();
 	}
+
 	public void Accueil()
 	{
 		new FrameAccueil(this.ctrl);
 		
 	}
-
 }

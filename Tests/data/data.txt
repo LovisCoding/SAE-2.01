@@ -25,3 +25,46 @@ Fuego	Rouge	955	360		900	306
 Fama	Vert	1090	290		1053	231
 Finista	Jaune	1185	385		1116	341
 Fissah	Brun	1075	480		1020	414
+						
+[ARETE]
+Tavula	Tiamù
+Tavula	Ticó
+Tavula	Tokha
+Tiamù	Tokha
+Tiamù	Ticó
+Tokha	Ticó
+Ticó	Kita
+Ticó	Laçao
+Tokha	Laçao
+Laçao	Loümu
+Laçao	Lokha
+Laçao	Loà
+Laçao	Milaù
+Loümu	Lokha
+Loümu	Loà
+Milaù	Loà
+Milaù	Khont-Rolah
+Milaù	Mutaa
+Milaù	Mokah
+Milaù	Massao
+Massao	Mutaa
+Massao	Maÿa
+Maÿa	Mutaa
+Maÿa	Mokah
+Mokah	Mutaa
+Mokah	Fuego
+Mokah	Fissah
+Mutaa	Khont-Rolah
+Fissah	Fuego
+Fissah	Fama
+Fissah	Finista
+Finista	Fama
+Fama	Fuego
+Fuego	Khont-Rolah
+Fuego	Kiola
+Khont-Rolah	Kita
+Khont-Rolah	Kosa
+Khont-Rolah	Kiola
+Kita	Kosa
+Kita	Kiola
+Kosa	Kiola

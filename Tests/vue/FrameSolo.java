@@ -1,9 +1,9 @@
 package vue;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import java.awt.FlowLayout;
+import javax.swing.*;
+import java.awt.*;
 
 import controleur.Controleur;
+import modele.Ile;
 
 public class FrameSolo extends JFrame
 {
@@ -14,21 +14,25 @@ public class FrameSolo extends JFrame
 		this.ctrl = ctrl;
 		this.setTitle   ( "Jouer" );
 		this.setLocation(0, 0); // Localisation
-		this.setSize    (1200, 800); // Taille
+		this.setExtendedState(JFrame.MAXIMIZED_BOTH);
+		this.setBackground(new Color(184,212,228));
 
-		this.setLayout(new FlowLayout());
 
+		this.setLayout(new BorderLayout());
+		
 		/*-------------------------*/
 		/* Création des composants */
 		/*-------------------------*/
 
-		PanelSolo pnlSolo = new PanelSolo(ctrl);
+		PanelIles 	pnlIles 	= new PanelIles(ctrl);
+		PanelPioche pnlPioche 	= new PanelPioche(ctrl);
 
 		/*-------------------------------*/
 		/* Positionnement des composants */
 		/*-------------------------------*/
 
-		this.add(pnlSolo);
+		this.add(pnlIles,	BorderLayout.CENTER);
+		this.add(pnlPioche, BorderLayout.EAST);
 
 		/*-------------------------------*/
 		/*         Finalisation          */
