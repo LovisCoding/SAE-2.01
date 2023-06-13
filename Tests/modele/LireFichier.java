@@ -21,10 +21,10 @@ public class LireFichier
 
 	public LireFichier(String nomFichier, Controleur ctrl)
 	{
-		this.nomFichier 	= nomFichier;
-		this.lstIles 		= new ArrayList<Ile>  ();
-		this.lstAretes		= new ArrayList<Arete>();
-		this.ctrl 			= ctrl;
+		this.nomFichier = nomFichier;
+		this.lstIles 	= new ArrayList<Ile>  ();
+		this.lstAretes	= new ArrayList<Arete>();
+		this.ctrl 		= ctrl;
 	}
 
 	public void lire()
@@ -76,7 +76,7 @@ public class LireFichier
 				if (!lineArete)
 				{
 					
-					System.out.println(parts[0]	+ " 1: " + parts[1] + " 2: " + parts[2] + " 3: " + parts[3] + " 4: " + parts[5] + "5:" + parts[6]);
+					// System.out.println(parts[0]	+ " 1: " + parts[1] + " 2: " + parts[2] + " 3: " + parts[3] + " 4: " + parts[5] + "5:" + parts[6]);
 					nom 	  	= parts[0];
 					couleur	   	= parts[1];
 					coCentreX	= Integer.parseInt(parts[2]);
@@ -93,7 +93,6 @@ public class LireFichier
 					Ile ile2 = null;
 					for (Ile i : this.ctrl.getGraphe().getEnsIle()) 
 					{
-						System.out.println(i.getNom());
 						if (parts[0].equals(i.getNom()))
 						{
 							ile1 = i;
@@ -103,24 +102,16 @@ public class LireFichier
 							ile2=i;
 						}
 					}
-					System.out.println(numArete + " " + ile1.getNom() + " " + ile2.getNom());
 					this.ctrl.getGraphe().ajouterArete(new Arete(numArete,ile1,ile2));
 				}
 
 			}
 
 			sc.close();
-			for ( Ile i : this.ctrl.getGraphe().getEnsIle())
-			{
-				System.out.println(i.toString());
-			}
-			for (Arete a : this.ctrl.getGraphe().getEnsArete())
-			{
-				System.out.println(a.toString());
-			}
 
-			System.out.println("Nombre d'arete : " + ctrl.getGraphe().getEnsArete().size());
-			System.out.println("Nombre d'ile : " + ctrl.getGraphe().getEnsIle().size());
+
+			// System.out.println("Nombre d'arete : " + ctrl.getGraphe().getEnsArete().size());
+			// System.out.println("Nombre d'ile : " + ctrl.getGraphe().getEnsIle().size());
 		
 		}
 
@@ -131,6 +122,6 @@ public class LireFichier
 		catch (FileNotFoundException e) {System.out.println("Fichier non trouvé");}
 	}
 	
-	public List<Ile> 	getLstIles () 		{return this.lstIles  ;}
+	public List<Ile> 	getLstIles  () 		{return this.lstIles  ;}
 	public List<Arete> 	getLstArete () 		{return this.lstAretes;}
 }

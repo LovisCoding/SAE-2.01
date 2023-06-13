@@ -1,7 +1,7 @@
 package modele;
 
 import java.awt.Color;
-import java.util.ArrayList;
+import java.util.List;
 
 public class Arete
 {
@@ -17,7 +17,16 @@ public class Arete
 		this.ile1	= ile1;
 		this.ile2	= ile2;
 		this.valeur	= 0;
-		this.couleur= Color.YELLOW;
+		this.couleur= new Color(188,188,180);
+	}
+
+    public Arete(int num, Ile ile1, Ile ile2, Color couleur) 
+	{
+		this.num 	= num;
+		this.ile1	= ile1;
+		this.ile2	= ile2;
+		this.valeur	= 0;
+		this.couleur= couleur;
 	}
 
 
@@ -26,6 +35,7 @@ public class Arete
 	public Ile	    getIle2() 	{return this.ile2       ;}
 	public int	    getValeur() {return this.valeur     ;}
     public Color	getCouleur(){return this.couleur    ;}
+    public Color    setCouleur(Color couleur){return this.couleur = couleur;}
 
 	public String toString() 
     {
@@ -33,7 +43,7 @@ public class Arete
                 + couleur + "]";
     }
 
-	public boolean intersection(ArrayList<Arete> lstArete) 
+	public boolean intersection(List<Arete> lstArete) 
     {
         double nx1 = this.getIle2().getCoCentreX();
         double ny1 = this.getIle2().getCoCentreY();

@@ -12,25 +12,19 @@ public class Pioche
 		new ImageIcon("./images/cartes/carte_joker_p.png"	),
 		new ImageIcon("./images/cartes/carte_marron_p.png"	),
 		new ImageIcon("./images/cartes/carte_rose_p.png"	),
-		new ImageIcon("./images/cartes/carte_verte_p.png"	)
-		
-	));
+		new ImageIcon("./images/cartes/carte_verte_p.png"	) ) );
 	private static ArrayList<ImageIcon> lstImageS = new ArrayList<>(Arrays.asList
 	(
 		new ImageIcon("./images/cartes/carte_jaune_s.png"	),
 		new ImageIcon("./images/cartes/carte_joker_s.png"	),
 		new ImageIcon("./images/cartes/carte_marron_s.png"	),
 		new ImageIcon("./images/cartes/carte_rose_s.png"	),
-		new ImageIcon("./images/cartes/carte_verte_s.png"	)
-		
-	));
+		new ImageIcon("./images/cartes/carte_verte_s.png"	) ) );
 	
 	public Pioche() 
 	{
-		
 		Collections.shuffle(lstImageP);
 		Collections.shuffle(lstImageS);
-
 	}
 
 
@@ -45,7 +39,7 @@ public class Pioche
 		else
 		{
 			ImageIcon img = null;
-			int rdm = (int)(Math.random()*(+lstImageS.size()+1));
+			int rdm = (int)(Math.random()*(lstImageP.size()+lstImageS.size()));
 			System.out.println("Random =" + rdm);
 			if (rdm <lstImageP.size())
 			{
@@ -55,10 +49,10 @@ public class Pioche
 			}
 			else
 			{
+				rdm = rdm -lstImageP.size();
 				img = lstImageS.get(rdm);
 				lstImageS.remove(rdm);
 			}
-			
 			
 			
 			System.out.println("image :" + img);

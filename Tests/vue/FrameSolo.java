@@ -12,7 +12,7 @@ public class FrameSolo extends JFrame
 	public FrameSolo(Controleur ctrl)
 	{
 		this.ctrl = ctrl;
-		this.setTitle   ( "Jouer" );
+		this.setTitle   ( "Jouer(Solo)" );
 		this.setLocation(0, 0); // Localisation
 		this.setExtendedState(JFrame.MAXIMIZED_BOTH);
 		this.setBackground(new Color(184,212,228));
@@ -24,15 +24,17 @@ public class FrameSolo extends JFrame
 		/* Création des composants */
 		/*-------------------------*/
 
-		PanelIles 	pnlIles 	= new PanelIles(ctrl);
-		PanelPioche pnlPioche 	= new PanelPioche(ctrl);
+		PanelIles 		pnlIles 	= new PanelIles	  (ctrl);
+		PanelPioche 	pnlPioche 	= new PanelPioche (ctrl);
+		PanelBandeau	pnlBandeau	= new PanelBandeau(ctrl);
 
 		/*-------------------------------*/
 		/* Positionnement des composants */
 		/*-------------------------------*/
 
-		this.add(pnlIles,	BorderLayout.CENTER);
-		this.add(pnlPioche, BorderLayout.EAST);
+		this.add(pnlIles,	 BorderLayout.CENTER);
+		this.add(pnlPioche,  BorderLayout.EAST);
+		this.add(pnlBandeau, BorderLayout.SOUTH);
 
 		/*-------------------------------*/
 		/*         Finalisation          */

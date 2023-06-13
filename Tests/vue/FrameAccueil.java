@@ -54,6 +54,13 @@ public class FrameAccueil extends JFrame
 		this.dispose();
 	}
 
+	public void Multi()
+	{
+		
+		new FrameMulti(this.ctrl);
+		this.dispose();
+	}
+
 	public void Accueil()
 	{
 		new FrameAccueil(this.ctrl);

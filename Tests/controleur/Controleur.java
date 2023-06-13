@@ -20,6 +20,7 @@ public class Controleur
 	private LireFichier 	lf;
 	private Graphe 			graphe;
 	private Pioche 			pioche;
+	private Joueur 			joueur;
 
 	public Controleur() 
 	{
@@ -27,7 +28,7 @@ public class Controleur
 		this.lf 			= new LireFichier("./data/data.txt", this);
 		this.lf.lire();
 		this.pioche 		= new Pioche();
-
+		this.joueur 		= new Joueur();
 		this.frameAccueil 	= new FrameAccueil(this);
 		
 
@@ -48,7 +49,7 @@ public class Controleur
 
 	public void Multi()
 	{
-		this.frameAccueil.Solo();
+		this.frameAccueil.Multi();
 	}
 
 	public ImageIcon piocher()
@@ -68,5 +69,12 @@ public class Controleur
 	{
 		return this.graphe;
 	}
+
+	public Joueur getJoueur() 
+	{
+		return this.joueur;
+	}
+
+
 }
 

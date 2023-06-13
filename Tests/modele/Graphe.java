@@ -9,12 +9,13 @@ import java.util.ArrayList;
 
 public class Graphe 
 {
-	private List<Arete>  		ensArete ;
-	private List<Ile> 			ensIles;
-	private List<Arete>			ensAreteColorer;
-	private String 				nom;
-	private List<Ile> 			ensIlesVisite;
-
+	private static int bonus;
+	
+	private List<Arete>  	ensArete ;
+	private List<Ile> 		ensIles;
+	private List<Arete>		ensAreteColorer;
+	private String 			nom;
+	private List<Ile> 		ensIlesVisite;
 
 	public Graphe(String nom) 
 	{
