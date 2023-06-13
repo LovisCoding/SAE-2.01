@@ -14,6 +14,7 @@ import vue.FrameAccueil;
 
 
 
+
 public class Controleur
 {
 	private FrameAccueil 	frameAccueil;
@@ -21,7 +22,8 @@ public class Controleur
 	private Graphe 			graphe;
 	private Pioche 			pioche;
 	private Joueur 			joueur;
-
+	private String 			lblBandeau;
+	
 	public Controleur() 
 	{
 		this.graphe 		= new Graphe("graphe");
@@ -30,6 +32,7 @@ public class Controleur
 		this.pioche 		= new Pioche();
 		this.joueur 		= new Joueur();
 		this.frameAccueil 	= new FrameAccueil(this);
+		this.lblBandeau = "";
 		
 
 	}
@@ -74,7 +77,6 @@ public class Controleur
 	{
 		return this.joueur;
 	}
-
 
 }
 

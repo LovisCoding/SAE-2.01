@@ -9,7 +9,7 @@ public class Joueur
 {	
 
 	private final static Color[] tabCoul = {Color.RED, Color.BLUE};
-	private final static int rdmColor1 = (int) Math.random()*2;
+	private  static int rdmColor1 = (int) (Math.random()*2);
 	private final static int rdmColor2 = 1-rdmColor1;
 	
 	private Color 	couleurJoueur;
@@ -17,6 +17,7 @@ public class Joueur
 
 	public Joueur()
 	{
+		System.out.println("rdm :" + rdmColor1);
 		this.couleurJoueur =  tabCoul[rdmColor1];
 
 		

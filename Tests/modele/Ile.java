@@ -33,7 +33,7 @@ public class Ile
 
 	public String 	getNom() 			{return this.nom			;}
 	public String 	getCouleur() 		{return this.couleur		;}
-	public boolean 	getEstSelectionne() {return this.estSelectionne	;}
+	public boolean 	estSelectionne() {return this.estSelectionne	;}
 	public int 		getCoCentreX() 		{return this.coCentreX		;}
 	public int 		getCoCentreY() 		{return this.coCentreY		;}
 	public int 		getPosImageX() 		{return this.posImageX		;}

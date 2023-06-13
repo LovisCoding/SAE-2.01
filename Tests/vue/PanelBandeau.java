@@ -11,7 +11,7 @@ import controleur.Controleur;
  * PanelBandeau
  */
 
-public class PanelBandeau extends JPanel implements ActionListener
+public class PanelBandeau extends JPanel //implements ActionListener
 {
 	
 	private Controleur 	ctrl;
@@ -62,12 +62,12 @@ public class PanelBandeau extends JPanel implements ActionListener
 		this.lblcouleur.setText("Couleur : " + couleur);
 	}
 
-	public void actionPerformed(ActionEvent e)
+	public void setLbl (String s)
 	{
-		// if(e.getSource() == this.ctrl.getImage())
-		// {
-
-		// }
+		this.lblIle1.setText(s);
 	}
+
+	
+	
 
 }

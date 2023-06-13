@@ -9,6 +9,9 @@ public class FrameSolo extends JFrame
 {
 	private Controleur ctrl;
 
+	private PanelBandeau	pnlBandeau;
+	private PanelPioche 	pnlPioche;
+	private PanelIles 		pnlIles;
 	public FrameSolo(Controleur ctrl)
 	{
 		this.ctrl = ctrl;
@@ -24,9 +27,9 @@ public class FrameSolo extends JFrame
 		/* Création des composants */
 		/*-------------------------*/
 
-		PanelIles 		pnlIles 	= new PanelIles	  (ctrl);
-		PanelPioche 	pnlPioche 	= new PanelPioche (ctrl);
-		PanelBandeau	pnlBandeau	= new PanelBandeau(ctrl);
+		this.pnlIles 	= new PanelIles	  (ctrl);
+		this.pnlPioche 	= new PanelPioche (ctrl);
+		this.pnlBandeau	= new PanelBandeau(ctrl);
 
 		/*-------------------------------*/
 		/* Positionnement des composants */
@@ -42,4 +45,16 @@ public class FrameSolo extends JFrame
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); //Fermeture de la fenêtre
 		this.setVisible( true );
 	}
+	public String MajLbl(String s)
+	{
+		
+		this.pnlBandeau.setLbl(s);
+		return s;
+	}
+
+	public PanelIles getPnlIles()
+	{
+		return this.pnlIles;
+	}
+
 }

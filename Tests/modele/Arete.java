@@ -76,4 +76,13 @@ public class Arete
         return false;
     }
 
+    public boolean estLieeExtremite(Ile ile) 
+    {
+        if (this.getIle1().equals(ile) || this.getIle2().equals(ile)) 
+        {
+            return true;
+        }
+        return false;
+    }
+
 }
