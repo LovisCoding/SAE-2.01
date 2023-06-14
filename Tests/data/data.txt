@@ -68,3 +68,11 @@ Khont-Rolah	Kiola
 Kita	Kosa
 Kita	Kiola
 Kosa	Kiola
+						
+[BONUS]
+Tokha	Laçao
+Ticó	Laçao
+Laçao	Milaú
+Khont-Rolah	Mutaa
+Khont-Rolah	Fuego
+Mokah	Fissah

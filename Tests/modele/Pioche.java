@@ -39,7 +39,6 @@ public class Pioche
 		{
 			System.out.println("Pioche vide");
 			return null;
-			
 		}
 		else
 		{
@@ -48,7 +47,7 @@ public class Pioche
 			System.out.println("Random =" + rdm);
 			if (rdm <lstImageP.size())
 			{
-				
+
 				img = lstImageP.get(rdm);
 				lstImageP.remove(rdm);
 			}
@@ -58,8 +57,7 @@ public class Pioche
 				img = lstImageS.get(rdm);
 				lstImageS.remove(rdm);
 			}
-			
-			
+
 			System.out.println("image :" + img);
 			return img;
 		}
@@ -68,16 +66,18 @@ public class Pioche
 	{
 		return lstImageP.size();
 	}
+	
 	public boolean estVide()
 	{
 		return lstImageP.isEmpty();
 	}
+
 	public void reset() 
 	{
 		System.out.println("dans reset");
 		lstImageP.clear();
 		lstImageP.addAll(lstImagePFinal);
-	
+
 		Collections.shuffle(lstImageP);
 		lstImageS = new ArrayList<>(lstImageSFinal);
 		Collections.shuffle(lstImageS);
