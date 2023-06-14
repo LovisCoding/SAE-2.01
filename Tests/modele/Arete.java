@@ -20,7 +20,7 @@ public class Arete
 		this.couleur= new Color(188,188,180);
 	}
 
-    public Arete(int num, Ile ile1, Ile ile2, Color couleur) 
+	public Arete(int num, Ile ile1, Ile ile2, Color couleur) 
 	{
 		this.num 	= num;
 		this.ile1	= ile1;
@@ -34,55 +34,55 @@ public class Arete
 	public Ile 	    getIle1() 	{return this.ile1       ;}
 	public Ile	    getIle2() 	{return this.ile2       ;}
 	public int	    getValeur() {return this.valeur     ;}
-    public Color	getCouleur(){return this.couleur    ;}
-    public Color    setCouleur(Color couleur){return this.couleur = couleur;}
+	public Color	getCouleur(){return this.couleur    ;}
+	public Color    setCouleur(Color couleur){return this.couleur = couleur;}
 
 	public String toString() 
-    {
-        return "Arete [num=" + num + ", ile1=" + ile1 + ", ile2=" + ile2 + ", valeur=" + valeur + ", couleur="
-                + couleur + "]";
-    }
+	{
+		return "Arete [num=" + num + ", ile1=" + ile1 + ", ile2=" + ile2 + ", valeur=" + valeur + ", couleur="
+				+ couleur + "]";
+	}
 
 	public boolean intersection(List<Arete> lstArete) 
-    {
-        double nx1 = this.getIle2().getCoCentreX();
-        double ny1 = this.getIle2().getCoCentreY();
+	{
+		double nx1 = this.getIle2().getCoCentreX();
+		double ny1 = this.getIle2().getCoCentreY();
 
-        // Vecteur
-        double vx1 = this.getIle1().getCoCentreX() - this.getIle2().getCoCentreX();
-        double vy1 = this.getIle1().getCoCentreY() - this.getIle2().getCoCentreY();
+		// Vecteur
+		double vx1 = this.getIle1().getCoCentreX() - this.getIle2().getCoCentreX();
+		double vy1 = this.getIle1().getCoCentreY() - this.getIle2().getCoCentreY();
 
-        for (Arete arete : lstArete) 
-        {
-            double nx2 = arete.getIle2().getCoCentreX();
-            double ny2 = arete.getIle2().getCoCentreY();
+		for (Arete arete : lstArete) 
+		{
+			double nx2 = arete.getIle2().getCoCentreX();
+			double ny2 = arete.getIle2().getCoCentreY();
 
-            // Vecteur
-            double vx2 = arete.getIle1().getCoCentreX() - arete.getIle2().getCoCentreX();
-            double vy2 = arete.getIle1().getCoCentreY() - arete.getIle2().getCoCentreY();
+			// Vecteur
+			double vx2 = arete.getIle1().getCoCentreX() - arete.getIle2().getCoCentreX();
+			double vy2 = arete.getIle1().getCoCentreY() - arete.getIle2().getCoCentreY();
 
-            if (vx1 * vy2 - vy1 * vx2 != 0) 
-            {
-                double v1 = -(-vx1 * ny1 + vx1 * ny2 + vy1 * nx1 - vy1 * nx2) / (vx1 * vy2 - vy1 * vx2);
-                double v2 = -( nx1 * vy2 - nx2 * vy2 - vx2 * ny1 + vx2 * ny2) / (vx1 * vy2 - vy1 * vx2);
+			if (vx1 * vy2 - vy1 * vx2 != 0) 
+			{
+				double v1 = -(-vx1 * ny1 + vx1 * ny2 + vy1 * nx1 - vy1 * nx2) / (vx1 * vy2 - vy1 * vx2);
+				double v2 = -( nx1 * vy2 - nx2 * vy2 - vx2 * ny1 + vx2 * ny2) / (vx1 * vy2 - vy1 * vx2);
 
-                if (v1 > 0 && v1 < 1 && v2 > 0 && v2 < 1) 
-                {
-                    return true;
-                }
-            }
-        }
+				if (v1 > 0 && v1 < 1 && v2 > 0 && v2 < 1) 
+				{
+					return true;
+				}
+			}
+		}
 
-        return false;
-    }
+		return false;
+	}
 
-    public boolean estLieeExtremite(Ile ile) 
-    {
-        if (this.getIle1().equals(ile) || this.getIle2().equals(ile)) 
-        {
-            return true;
-        }
-        return false;
-    }
+	public boolean estLieeExtremite(Ile ile) 
+	{
+		if (this.getIle1().equals(ile) || this.getIle2().equals(ile)) 
+		{
+			return true;
+		}
+		return false;
+	}
 
 }

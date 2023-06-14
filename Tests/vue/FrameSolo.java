@@ -66,8 +66,5 @@ public class FrameSolo extends JFrame
 	{
 		return this.pnlDroit;
 	}
-	public String getTypeCouleur()
-	{
-		return this.pnlDroit.getTypeCouleur();
-	}
+
 }

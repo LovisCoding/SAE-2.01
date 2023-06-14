@@ -1,6 +1,8 @@
 package vue;
 
 import javax.swing.*;
+import javax.swing.plaf.synth.SynthScrollBarUI;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.awt.*;
@@ -59,18 +61,20 @@ public class PanelPioche extends JPanel implements ActionListener
 
 		
 	}
+
 	public void actionPerformed(ActionEvent e)
 	{
 		if(e.getSource() == this.btnCarteDos)
 		{
-			boolean vide 	= this.ctrl.estVidePioche();
-			ImageIcon img 	= this.ctrl.piocher();
+			boolean vide 	= this.ctrl.getPioche().estVide();
+			ImageIcon img 	= this.ctrl.getPioche().piocher();
 			if (!vide){this.btnCarteFace.setIcon(img);}
-			if (this.ctrl.estVidePioche())
+			if (this.ctrl.getPioche().estVide())
 			{
 				System.out.println("Pioche vide");
 				this.btnCarteDos.setIcon(CarteVide);
 				this.btnCarteDos.setEnabled(false);
+				this.ctrl.getFrameAccueil().getFrameSolo().getPnlDroit().getPnlScore().affichageBoutonTour();
 			}
 			
 			else
@@ -99,10 +103,7 @@ public class PanelPioche extends JPanel implements ActionListener
 					case "./images/cartes/carte_rose_p.png":
 						this.type = "Rose";
 						break;
-
-					case "./images/cartes/carte_jaune_s.png": 
-						this.type = "Jaune";
-						break;
+					
 
 					case "./images/cartes/carte_joker_s.png": 
 						this.type = "Joker";
@@ -128,4 +129,16 @@ public class PanelPioche extends JPanel implements ActionListener
 	{
 		return this.type;
 	}
-}
+	public void nextRound()
+	{
+		this.btnCarteDos.setIcon(CarteDos);
+		this.btnCarteFace.setIcon(CarteVide);
+		this.btnCarteDos.setEnabled(true);
+		this.ctrl.getPioche().reset();
+		System.out.println("apres reset");
+		System.out.println(this.ctrl.getJoueur().getRdmColor1());
+		this.ctrl.getJoueur().changerCouleur();
+		System.out.println(this.ctrl.getJoueur().getRdmColor1());
+
+	}
+}	

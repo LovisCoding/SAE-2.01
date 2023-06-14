@@ -13,8 +13,6 @@ import javax.swing.ImageIcon;
 import vue.FrameAccueil;
 
 
-
-
 public class Controleur
 {
 	private FrameAccueil 	frameAccueil;
@@ -26,15 +24,13 @@ public class Controleur
 	
 	public Controleur() 
 	{
-		this.graphe 		= new Graphe("graphe");
+		this.joueur 		= new Joueur(this);
+		this.graphe 		= new Graphe("graphe",this);
 		this.lf 			= new LireFichier("./data/data.txt", this);
 		this.lf.lire();
 		this.pioche 		= new Pioche();
-		this.joueur 		= new Joueur();
 		this.frameAccueil 	= new FrameAccueil(this);
 		this.lblBandeau = "";
-		
-
 	}
 
 	public static void main(String args[])
@@ -55,19 +51,6 @@ public class Controleur
 		this.frameAccueil.Multi();
 	}
 
-	public ImageIcon piocher()
-	{
-		return this.pioche.piocher();
-	}
-	public int taillePioche()
-	{
-		return this.pioche.taillePioche();
-	}
-	public boolean estVidePioche()
-	{
-		return this.pioche.estVide();
-	}
-
 	public Graphe getGraphe() 
 	{
 		return this.graphe;
@@ -77,6 +60,11 @@ public class Controleur
 	{
 		return this.joueur;
 	}
+	public Pioche getPioche()
+	{
+		return this.pioche;
+	}
+
 	public FrameAccueil getFrameAccueil()
 	{
 		return this.frameAccueil;

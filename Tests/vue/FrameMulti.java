@@ -25,14 +25,15 @@ public class FrameMulti extends JFrame
 		/*-------------------------*/
 
 		PanelIles 	pnlIles 	= new PanelIles(ctrl);
-		PanelPioche pnlPioche 	= new PanelPioche(ctrl);
+		PanelDroit pnlDroit 	= new PanelDroit(ctrl);
 
 		/*-------------------------------*/
 		/* Positionnement des composants */
 		/*-------------------------------*/
 
 		this.add(pnlIles,	BorderLayout.CENTER);
-		this.add(pnlPioche, BorderLayout.EAST);
+		this.add(pnlDroit, BorderLayout.EAST);
+		
 
 		/*-------------------------------*/
 		/*         Finalisation          */

@@ -5,7 +5,8 @@ import javax.swing.*;
 import java.util.*;
 public class Pioche 
 {
-	private static ArrayList<ImageIcon> lstImageP = new ArrayList<>(Arrays.asList
+
+	private  static ArrayList<ImageIcon> lstImagePFinal = new ArrayList<>(Arrays.asList
 	(
 		
 		new ImageIcon("./images/cartes/carte_jaune_p.png"	),
@@ -13,7 +14,7 @@ public class Pioche
 		new ImageIcon("./images/cartes/carte_marron_p.png"	),
 		new ImageIcon("./images/cartes/carte_rose_p.png"	),
 		new ImageIcon("./images/cartes/carte_verte_p.png"	) ) );
-	private static ArrayList<ImageIcon> lstImageS = new ArrayList<>(Arrays.asList
+	private  static ArrayList<ImageIcon> lstImageSFinal = new ArrayList<>(Arrays.asList
 	(
 		new ImageIcon("./images/cartes/carte_jaune_s.png"	),
 		new ImageIcon("./images/cartes/carte_joker_s.png"	),
@@ -21,6 +22,10 @@ public class Pioche
 		new ImageIcon("./images/cartes/carte_rose_s.png"	),
 		new ImageIcon("./images/cartes/carte_verte_s.png"	) ) );
 	
+
+		private static ArrayList<ImageIcon> lstImageP = new ArrayList<>(lstImagePFinal);;
+		private static ArrayList<ImageIcon> lstImageS = new ArrayList<>(lstImageSFinal);
+
 	public Pioche() 
 	{
 		Collections.shuffle(lstImageP);
@@ -66,5 +71,16 @@ public class Pioche
 	public boolean estVide()
 	{
 		return lstImageP.isEmpty();
+	}
+	public void reset() 
+	{
+		System.out.println("dans reset");
+		lstImageP.clear();
+		lstImageP.addAll(lstImagePFinal);
+	
+		Collections.shuffle(lstImageP);
+		lstImageS = new ArrayList<>(lstImageSFinal);
+		Collections.shuffle(lstImageS);
+
 	}
 }

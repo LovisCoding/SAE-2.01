@@ -11,7 +11,10 @@ public class PanelDroit extends JPanel
 {
 	private Controleur ctrl;
 	private PanelPioche pnlPioche;
+	private PanelPioche pnlPioche2;
+
 	private PanelScore  pnlScore;
+	private static int 	nbTour;
 
 	public PanelDroit(Controleur ctrl) 
 	{
@@ -19,9 +22,10 @@ public class PanelDroit extends JPanel
 		/* Création des composants */
 		/*-------------------------*/
 
-		this.ctrl = ctrl;
-		this.pnlPioche = new PanelPioche(this.ctrl);
-		this.pnlScore = new PanelScore(this.ctrl);
+		this.ctrl 	= ctrl;
+		pnlPioche 	= new PanelPioche(this.ctrl);
+		pnlScore 	= new PanelScore(this.ctrl);
+		pnlPioche2 	= new PanelPioche(this.ctrl);
 
 		this.setLayout(new BorderLayout());
 		
@@ -34,10 +38,17 @@ public class PanelDroit extends JPanel
 		/*-------------------------------*/
 		/* Finalisation                  */
 		/*-------------------------------*/
+		pnlPioche2.setVisible(false);
 	}
 
-	public String getTypeCouleur()
+	public PanelPioche getPnlPioche()
 	{
-		return this.pnlPioche.getTypeCouleur();
+		return pnlPioche;
 	}
+	public PanelScore getPnlScore()
+	{
+		return pnlScore;
+	}
+		
 }
+

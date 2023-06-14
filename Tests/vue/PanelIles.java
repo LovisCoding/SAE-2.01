@@ -8,7 +8,6 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
 import java.util.List;
-import java.awt.image.RescaleOp;
 
 import modele.Ile;
 import modele.Arete;
@@ -149,56 +148,12 @@ public class PanelIles extends JPanel implements MouseListener
 		int resizedX = (int) (x * resize) - highlightRadius / 2 + 50;
 		int resizedY = (int) (y * resize) - highlightRadius / 2 + 50;
 		g.fillOval(resizedX, resizedY, highlightRadius, highlightRadius);
-
-		for (Ile iles : this.ctrl.getGraphe().getEnsIle())
-		{
-            // Vérifie si l'île possède la même couleur que la carte tirée
-            if (iles.getCouleur().equals(this.ctrl.getFrameAccueil().getFrameSolo().getTypeCouleur()) || this.ctrl.getFrameAccueil().getFrameSolo().getTypeCouleur() == "Joker")
-			{
-                System.out.println("test2");
-                /*for (Arete a : ctrl.getGraphe().getEnsArete())
-				{
-                    System.out.println("test3");
-                    Arete tmp = new Arete(a.getNum(), ile, iles, this.ctrl.getJoueur().getCouleurJoueur());
-
-				    // Vérifie si l'arête est connecter a une arête colorée
-				    if (!tmp.getIle1().areteLiee(this.ctrl.getGraphe().getEnsAreteColorer()) && !tmp.getIle2().areteLiee(this.ctrl.getGraphe().getEnsAreteColorer()))
-				    {*/
-                        // Créer un filtre de couleur pour rendre l'image plus lumineuse
-                        RescaleOp brighterOp = new RescaleOp(1.2f, 0, null);
-
-                        // Appliquer le filtre sur l'image de l'île
-                        BufferedImage brighterImage = new BufferedImage(getWidth(), getHeight(), BufferedImage.TYPE_INT_ARGB);
-                        Graphics2D g2d = brighterImage.createGraphics();
-                        g2d.drawImage(iles.getImage(), iles.getPosImageX(), iles.getPosImageY(), getWidth(), getHeight(), this);
-                        g2d.dispose();
-                        brighterOp.filter(brighterImage, brighterImage);
-
-                        // Dessiner l'image plus lumineuse
-                        g.drawImage(brighterImage, iles.getPosImageX(), iles.getPosImageY(), getWidth(), getHeight(), this);
-                    //}
-                //}
-			}
-		}
 	}
 
 	public void mouseClicked(MouseEvent evt)
 	{
 		if (evt.getClickCount() == 1) 
 		{
-
-			int nbSelection = 0;
-			for (Ile ile : this.ctrl.getGraphe().getEnsIle())
-			{
-				if (ile.estSelectionne())
-					nbSelection++;
-			
-			}
-
-			if (nbSelection %2 == 0)
-				for (Ile ile : this.ctrl.getGraphe().getEnsIle())
-					ile.setEstSelectionne(false);
-			
 
 			// simple
 			int mouseX = evt.getX();
@@ -218,15 +173,15 @@ public class PanelIles extends JPanel implements MouseListener
 				// if (mouseX >= ile.getImage().getWidth(this) && mouseX < ile.getImage().getWidth(this) + resizedWidth &&
 				// 		mouseY >= ile.getImage().getHeight(this) && mouseY < ile.getImage().getHeight(this) + resizedHeight)
 				if (mouseX >= imageX - 30 && mouseX < imageX + resizedWidth + 30 &&
-					mouseY >= imageY - 30 && mouseY < imageY + resizedHeight + 30) 
+                	mouseY >= imageY - 30 && mouseY < imageY + resizedHeight + 30) 
 				{
 					int pixelX = mouseX - imageX;
 					int pixelY = mouseY - imageY;
 					if (estOpaque(imageIle, pixelX, pixelY))
 					{
 						System.out.println("Image " + ile.getNom() + " sélectionnée");
-						this.ctrl.getFrameAccueil().getFrameSolo().getPnlBandeau().setLbl(ile.getNom());
-						ile.setEstSelectionne(true);
+						// this.ctrl.setLbl(ile.getNom());
+						ile.selectionneIle(this.ctrl.getGraphe());
 						repaint();
 					}
 					else
@@ -241,7 +196,6 @@ public class PanelIles extends JPanel implements MouseListener
 			for (Ile ile : ctrl.getGraphe().getEnsIle())
 			{
 				for (Ile ile2 : ctrl.getGraphe().getEnsIle())
-				{
 					for (Arete a : ctrl.getGraphe().getEnsArete())
 					{
 						if (ile.estSelectionne() && ile2.estSelectionne() 
@@ -267,17 +221,17 @@ public class PanelIles extends JPanel implements MouseListener
 								Arete tmp = new Arete(a.getNum(), a.getIle1(), a.getIle2(), this.ctrl.getJoueur().getCouleurJoueur());
 
 								// Vérifie si l'arête est connecter a une arête colorée
-								if (!tmp.getIle1().areteLiee(this.ctrl.getGraphe().getEnsAreteColorer()) && !tmp.getIle2().areteLiee(this.ctrl.getGraphe().getEnsAreteColorer())) 
+								if (!tmp.getIle1().areteLiee(this.ctrl.getGraphe().getEnsAreteColorer()) 
+									&& !tmp.getIle2().areteLiee(this.ctrl.getGraphe().getEnsAreteColorer())) 
 								{
-									System.out.println("L'arête n'est pas connectée à une arête colorée");
-                                    return;
-                                    
-                                }
-								if (!this.ctrl.getGraphe().getEnsSommetVisite().get(0).areteLiee(tmp) &&
-									!this.ctrl.getGraphe().getEnsSommetVisite().get(this.ctrl.getGraphe().getEnsSommetVisite().size()-1).areteLiee(tmp) && 
-									this.ctrl.getGraphe().getEnsSommetVisite().size() > 1)
+										System.out.println("L'arête n'est pas connectée à une arête colorée");
+										return;
+								}
+
+								if (!this.ctrl.getGraphe().getIleDepart().areteLiee(tmp) &&
+									!this.ctrl.getGraphe().getIleArrivee().areteLiee(tmp) )
 								{
-									System.out.println("Ext 1 : " + this.ctrl.getGraphe().getEnsSommetVisite().get(0) + " Ext 2 : " + this.ctrl.getGraphe().getEnsSommetVisite().get(this.ctrl.getGraphe().getEnsSommetVisite().size()-1));
+									System.out.println("Ext 1 : " + this.ctrl.getGraphe().getIleDepart()+ " Ext 2 : " + this.ctrl.getGraphe().getIleArrivee());
 									System.out.println("L'arête n'est pas connectée à une extrémité");
 									return;
 								}
@@ -299,30 +253,17 @@ public class PanelIles extends JPanel implements MouseListener
 							else
 							System.out.println("Il n'y a pas d'arête colorée");
 
-							if (!a.getIle1().getNom().equals("Mutaa") && !a.getIle2().getNom().equals("Mutaa") && this.ctrl.getJoueur().getCouleurJoueur() == Color.BLUE)
-							{
-								System.out.println("Le joueur ne peut pas colorer cette arête en bleu");
-								return;
-							}
-							else if (!a.getIle1().getNom().equals("Tic\u00F3") && !a.getIle2().getNom().equals("Tic\u00F3") && this.ctrl.getJoueur().getCouleurJoueur() == Color.RED)
-							{
-								System.out.println("Le joueur ne peut pas colorer cette arête en rouge");
-								return;
-							}
-
-							a.setCouleur(this.ctrl.getJoueur().getCouleurJoueur());
 							this.ctrl.getGraphe().ajouterAreteColorer(a);
-							for (Ile i : ctrl.getGraphe().getEnsIle())
-								i.setEstSelectionne(false);
+							a.getIle1().selectionneIle(this.ctrl.getGraphe());
+							a.getIle2().selectionneIle(this.ctrl.getGraphe());
 
 							System.out.println("Arete " + a.getIle1().getNom() + " " + a.getIle2().getNom() + " sélectionnée");
 							System.out.println("Couleur : " + a.getCouleur());
 							System.out.println(this.ctrl.getGraphe().getEnsAreteColorer().size() + " arêtes colorées");
-							
+
 							break;
 						}
 					}
-				}
 			}
 		}
 	}
@@ -335,11 +276,9 @@ public class PanelIles extends JPanel implements MouseListener
 
 	public void mouseReleased(MouseEvent evt){}
 
-	private boolean estOpaque(Image image, int x, int y)
-	{
+	private boolean estOpaque(Image image, int x, int y) {
 		BufferedImage bufferedImage = toBufferedImage(image);
-		if (x >= 0 && x < bufferedImage.getWidth() && y >= 0 && y < bufferedImage.getHeight())
-		{
+		if (x >= 0 && x < bufferedImage.getWidth() && y >= 0 && y < bufferedImage.getHeight()) {
 			int pixel = bufferedImage.getRGB(x, y);
 			return (pixel >> 24) != 0x00;
 		}

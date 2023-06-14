@@ -5,9 +5,11 @@
 package modele;
 import java.awt.Color;
 
+import controleur.Controleur;
+
 public class Joueur
 {	
-
+	private Controleur ctrl;
 	private final static Color[] tabCoul = {Color.RED, Color.BLUE};
 	private  static int rdmColor1 = (int) (Math.random()*2);
 	private final static int rdmColor2 = 1-rdmColor1;
@@ -15,13 +17,11 @@ public class Joueur
 	private Color 	couleurJoueur;
 	private int 	points;
 
-	public Joueur()
+	public Joueur(Controleur ctrl)
 	{
+		this.ctrl = ctrl;
 		System.out.println("rdm :" + rdmColor1);
 		this.couleurJoueur =  tabCoul[rdmColor1];
-
-		
-
 		this.points        = 0;
 	}
 	
@@ -32,4 +32,8 @@ public class Joueur
 	public int  	getPoints()			  	  			  	{return this.points		     	 	;}
 	public void 	setPoints(int points)		   	   	 	{this.points = points		    	;}
 	public void 	ajouterPoints(int points)			  	{this.points += points	    	 	;}
+	public void 	changerCouleur()						
+	{
+		this.couleurJoueur = tabCoul[rdmColor2];
+		this.ctrl.getFrameAccueil().getFrameSolo().getPnlBandeau().repaint();}
 }

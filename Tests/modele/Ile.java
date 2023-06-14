@@ -1,9 +1,10 @@
 package modele;
-
 import java.awt.Toolkit;
 import java.util.ArrayList;
 import java.util.List;
 import java.awt.Image;
+import java.awt.Color;
+import java.awt.image.BufferedImage;
 /**
  * Iles
  */
@@ -78,4 +79,50 @@ public class Ile
 		}
 		return listeArete;
 	}
+
+	 public Color getPixelColor(int x, int y) {
+        if (this.getImage() != null && x >= 0 && y >= 0 && x < this.getImage().getWidth(null)
+                && y < this.getImage().getHeight(null)) {
+            BufferedImage bufferedImage = new BufferedImage(this.getImage().getWidth(null),
+                    this.getImage().getHeight(null), BufferedImage.TYPE_INT_ARGB);
+            bufferedImage.getGraphics().drawImage(this.getImage(), 0, 0, null);
+            return new Color(bufferedImage.getRGB(x, y), true);
+        }
+        return null;
+    }
+
+    public Color estTransparent() {
+		return new Color(0, 0, 0, 0); // Couleur transparente (alpha = 0)
+	}
+
+	public void selectionneIle(Graphe g) {
+		if (!this.estSelectionne()) {
+			// Vérifier si une autre île est déjà sélectionnée
+			for (Ile autreIle : g.getEnsIle()) {
+				if (autreIle.estSelectionne()) {
+					// Vérifier si les deux îles sont adjacentes
+					if (g.estAdjacent(this, autreIle)) {
+						// Marquer les deux îles comme sélectionnées
+						this.setEstSelectionne(true);
+						autreIle.setEstSelectionne(true);
+
+						// Autres actions à effectuer lorsque deux îles sont sélectionnées
+
+						return;
+					}
+				}
+			}
+
+			// Aucune autre île sélectionnée, marquer l'île comme sélectionnée
+			this.setEstSelectionne(true);
+
+			// Autres actions à effectuer lorsque l'île est sélectionnée
+		} else {
+			// L'île est déjà sélectionnée, la déselectionner
+			this.setEstSelectionne(false);
+
+			// Autres actions à effectuer lorsque l'île est déselectionnée
+		}
+	}
+    
 }
