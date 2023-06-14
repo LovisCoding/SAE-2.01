@@ -10,8 +10,9 @@ public class FrameSolo extends JFrame
 	private Controleur ctrl;
 
 	private PanelBandeau	pnlBandeau;
-	private PanelPioche 	pnlPioche;
+	private PanelDroit 		pnlDroit;
 	private PanelIles 		pnlIles;
+	
 	public FrameSolo(Controleur ctrl)
 	{
 		this.ctrl = ctrl;
@@ -28,7 +29,7 @@ public class FrameSolo extends JFrame
 		/*-------------------------*/
 
 		this.pnlIles 	= new PanelIles	  (ctrl);
-		this.pnlPioche 	= new PanelPioche (ctrl);
+		this.pnlDroit 	= new PanelDroit (ctrl);
 		this.pnlBandeau	= new PanelBandeau(ctrl);
 
 		/*-------------------------------*/
@@ -36,7 +37,7 @@ public class FrameSolo extends JFrame
 		/*-------------------------------*/
 
 		this.add(pnlIles,	 BorderLayout.CENTER);
-		this.add(pnlPioche,  BorderLayout.EAST);
+		this.add(pnlDroit,  BorderLayout.EAST);
 		this.add(pnlBandeau, BorderLayout.SOUTH);
 
 		/*-------------------------------*/
@@ -56,5 +57,17 @@ public class FrameSolo extends JFrame
 	{
 		return this.pnlIles;
 	}
+	public PanelBandeau getPnlBandeau()
+	{
+		return this.pnlBandeau;
+	}
 
+	public PanelDroit getPnlDroit()
+	{
+		return this.pnlDroit;
+	}
+	public String getTypeCouleur()
+	{
+		return this.pnlDroit.getTypeCouleur();
+	}
 }

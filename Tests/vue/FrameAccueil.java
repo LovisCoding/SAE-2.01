@@ -11,9 +11,11 @@ import java.awt.*;
 
 public class FrameAccueil extends JFrame
 {
-	Controleur    	ctrl;
-	PanelAccueil 	pnlAccueil;
-	PanelIles 		pnlSolo;
+	private Controleur    	ctrl;
+	private PanelAccueil 	pnlAccueil;
+	private FrameSolo		frameSolo;
+	private FrameMulti		frameMulti;
+
 
 	public FrameAccueil(Controleur ctrl)
 	{
@@ -29,7 +31,8 @@ public class FrameAccueil extends JFrame
 		/*-------------------------*/
 
 		this.pnlAccueil = new PanelAccueil(ctrl);
-	
+		this.frameSolo = null;
+		this.frameMulti = null;
 
 		/*-------------------------------*/
 		/* Positionnement des composants */
@@ -44,20 +47,19 @@ public class FrameAccueil extends JFrame
 
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); //Fermeture de la fenêtre
 		this.setVisible( true );
-		
 	}
 
 	public void Solo()
 	{
 		
-		new FrameSolo(this.ctrl);
+		this.frameSolo = new FrameSolo(this.ctrl);
 		this.dispose();
 	}
 
 	public void Multi()
 	{
 		
-		new FrameMulti(this.ctrl);
+		this.frameMulti = new FrameMulti(this.ctrl);
 		this.dispose();
 	}
 
@@ -65,5 +67,13 @@ public class FrameAccueil extends JFrame
 	{
 		new FrameAccueil(this.ctrl);
 		
+	}
+	public FrameSolo getFrameSolo()
+	{
+		return this.frameSolo;
+	}
+	public FrameMulti getFrameMulti()
+	{
+		return this.frameMulti;
 	}
 }

@@ -32,14 +32,35 @@ public class Graphe
 	public void ajouterAreteColorer(Arete arete) 
 	{
 		this.ensAreteColorer.add(arete);
-		this.ensIlesVisite.add(arete.getIle1());
-		this.ensIlesVisite.add(arete.getIle2());
+		if (!this.ensIlesVisite.isEmpty())
+		{
+			if (this.ensIlesVisite.get(0).areteLiee(arete) )
+			{
+				if (this.ensIlesVisite.contains(arete.getIle1()))
+					this.ensIlesVisite.add(arete.getIle2());
+				else if (this.ensIlesVisite.contains(arete.getIle2()))
+					this.ensIlesVisite.add(arete.getIle1());
+			}
+			if (this.ensIlesVisite.get(this.ensIlesVisite.size() - 1).areteLiee(arete))
+			{
+				if (this.ensIlesVisite.contains(arete.getIle1()))
+					this.ensIlesVisite.add(arete.getIle2());
+				else if (this.ensIlesVisite.contains(arete.getIle2()))
+					this.ensIlesVisite.add(arete.getIle1());
+			}
+		}
+		else
+		{
+			this.ensIlesVisite.add(arete.getIle1());
+			this.ensIlesVisite.add(arete.getIle2());
+		}
 	}
 
 	public List<Arete>  getEnsArete () 			{return this.ensArete 		;}
 	public List<Ile> 	getEnsIle() 			{return this.ensIles		;}
 	public List<Arete>  getEnsAreteColorer() 	{return this.ensAreteColorer;}
 	public String 		getNom() 				{return this.nom			;}
+	public List<Ile> 	getEnsSommetVisite() 	{return this.ensIlesVisite	;}
 	
 	public void setEnsSommetVisite(List<Ile> ensSommetVisite) {this.ensIlesVisite = ensSommetVisite;}
 

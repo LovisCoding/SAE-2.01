@@ -23,6 +23,7 @@ public class PanelPioche extends JPanel implements ActionListener
 	private JPanel 		pnlPioche;
 	private JButton 	btnCarteDos;
 	private JLabel 		btnCarteFace;
+	private String		type;
 
 	public PanelPioche(Controleur ctrl)
 	{
@@ -48,6 +49,7 @@ public class PanelPioche extends JPanel implements ActionListener
 		/*-------------------------------*/
 		/* positionnement des composants */
 		/*-------------------------------*/
+		this.add(new JLabel("Pioche"));
 		this.add(pnlPioche);
 
 		/*-------------------------------*/
@@ -74,51 +76,56 @@ public class PanelPioche extends JPanel implements ActionListener
 			else
 			{
 				String s 	= "" + img;
-				String type = "";
+				this.type = "";
 				
 				switch(s)
 				{
 					case "./images/cartes/carte_jaune_p.png": 
-						type = "jaune";
+						this.type = "Jaune";
 						break;
 
 					case "./images/cartes/carte_joker_p.png": 
-						type = "joker";
+						this.type = "Joker";
 						break;
 
 					case "./images/cartes/carte_marron_p.png": 
-						type = "marron";
+						this.type = "Brun";
 						break;
 
 					case "./images/cartes/carte_vert_p.png":
-						type = "vert";
+						this.type = "Vert";
 						break;
 
 					case "./images/cartes/carte_rose_p.png":
-						type = "rose";
+						this.type = "Rose";
 						break;
 
 					case "./images/cartes/carte_jaune_s.png": 
-						type = "jaune";
+						this.type = "Jaune";
 						break;
 
 					case "./images/cartes/carte_joker_s.png": 
-						type = "joker";
+						this.type = "Joker";
 						break;
 
 					case "./images/cartes/carte_marron_s.png": 
-						type = "marron";
+						this.type = "Brun";
 						break;
 
 					case "./images/cartes/carte_vert_s.png":
-						type = "vert";
+						this.type = "Vert";
 						break;
 						
 					case "./images/cartes/carte_rose_s.png":
-						type = "rose";
+						this.type = "Rose";
 						break;
 				}
 			}
 		}
+	}
+
+	public String getTypeCouleur()
+	{
+		return this.type;
 	}
 }

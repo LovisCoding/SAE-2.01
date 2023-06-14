@@ -40,5 +40,4 @@ public class FrameMulti extends JFrame
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); //Fermeture de la fenêtre
 		this.setVisible( true );
 	}
-	
 }

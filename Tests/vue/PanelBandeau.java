@@ -18,6 +18,7 @@ public class PanelBandeau extends JPanel //implements ActionListener
 	private JLabel 		lblIle1;
 	private JLabel 		lblIle2;
 	private JLabel      lblcouleur;
+	private static boolean lbl1 = true; 			//permet de passer de labelIle1 à labelIle2
 
 	public PanelBandeau(Controleur ctrl) 
 	{
@@ -47,27 +48,27 @@ public class PanelBandeau extends JPanel //implements ActionListener
 
 	}
 
-	public void setIle1(String ile1)
-	{
-		this.lblIle1.setText("Ile 1 : " + ile1);
-	}
+	public void setIle1(String ile1) { this.lblIle1.setText("Ile 1 : " + ile1); }
 
-	public void setIle2(String ile2)
-	{
-		this.lblIle2.setText("Ile 2 : " + ile2);
-	}
+	public void setIle2(String ile2) { this.lblIle2.setText("Ile 2 : " + ile2); }
 
-	public void setCouleur(String couleur)
-	{
-		this.lblcouleur.setText("Couleur : " + couleur);
-	}
+	public void setCouleur(String couleur) { this.lblcouleur.setText("Couleur : " + couleur); }
 
 	public void setLbl (String s)
 	{
-		this.lblIle1.setText(s);
+		if (lbl1 )
+		{
+			this.setIle2("");
+			this.setIle1(s);
+			lbl1=false;
+		}
+		else
+		{
+			if (!(s.equals(lblIle1.getText())))
+			{
+				this.setIle2(s);
+				lbl1=true;
+			}
+		}
 	}
-
-	
-	
-
 }

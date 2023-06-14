@@ -77,6 +77,10 @@ public class Controleur
 	{
 		return this.joueur;
 	}
+	public FrameAccueil getFrameAccueil()
+	{
+		return this.frameAccueil;
+	}
 
 }
 
