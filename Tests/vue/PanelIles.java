@@ -313,8 +313,7 @@ public class PanelIles extends JPanel implements MouseListener
 								a.getIle2().selectionneIle(this.ctrl.getGraphe());
 								this.ctrl.getJoueur().setAJoue(true);
 
-								this.ctrl.getScore().ajouterRegion();
-								this.ctrl.getScore().ajouterRegionMax();
+								this.ctrl.getScore().maj();
 							}
 
 							System.out.println("Arete " + a.getIle1().getNom() + " " + a.getIle2().getNom() + " sélectionnée");
