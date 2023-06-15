@@ -29,6 +29,7 @@ public class Score
 	public void ajouterRegion()
 	{
 		nbRegion ++;
+		nbRegionMax++;
 		maj();
 		
 	}
@@ -40,14 +41,15 @@ public class Score
 
 	public void ajouterBonus( )
 	{
-		bonus ++;
+		bonus +=2;
+		System.out.println("dans le bonus");
 		maj();
 	}
 
 	public void maj ()
 	{
 		
-		scoreLigneActuelle = nbRegion*nbRegionMax;
+		scoreLigneActuelle = nbRegion*nbRegionMax+bonus;
 		if (tour1)
 		{
 		scoreLigne1 = scoreLigneActuelle;
@@ -58,7 +60,7 @@ public class Score
 			scoreFinal = scoreLigne1 +scoreLigneActuelle;
 		 }
 
-		this.ctrl.getFrameAccueil().getFrameSolo().getPnlDroit().getPnlScore().maj(""+nbRegion,""+nbRegionMax,""+bonus,""+scoreLigneActuelle,""+scoreFinal);
+		this.ctrl.getFrameAccueil().getFrameSolo().getPnlDroit().getPnlScore().maj(""+nbRegion,""+nbRegionMax,""+(nbRegion*nbRegionMax),""+bonus,""+scoreLigneActuelle,""+scoreFinal);
 		
 	}
 
@@ -67,6 +69,9 @@ public class Score
 		nbRegion = 0;
 		nbRegionMax = 0;
 		scoreLigneActuelle =0;
+		bonus = 0;
+		maj();
+		
 
 	}
 }

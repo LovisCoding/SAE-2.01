@@ -3,12 +3,15 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import javax.swing.*;
 import java.util.*;
+
+import controleur.Controleur;
+
 public class Pioche 
 {
 
 	private  static ArrayList<ImageIcon> lstImagePFinal = new ArrayList<>(Arrays.asList
 	(
-		
+
 		new ImageIcon("./images/cartes/carte_jaune_p.png"	),
 		new ImageIcon("./images/cartes/carte_joker_p.png"	),
 		new ImageIcon("./images/cartes/carte_marron_p.png"	),
@@ -21,13 +24,15 @@ public class Pioche
 		new ImageIcon("./images/cartes/carte_marron_s.png"	),
 		new ImageIcon("./images/cartes/carte_rose_s.png"	),
 		new ImageIcon("./images/cartes/carte_verte_s.png"	) ) );
-	
 
-		private static ArrayList<ImageIcon> lstImageP = new ArrayList<>(lstImagePFinal);;
-		private static ArrayList<ImageIcon> lstImageS = new ArrayList<>(lstImageSFinal);
 
-	public Pioche() 
+	private static ArrayList<ImageIcon> lstImageP = new ArrayList<>(lstImagePFinal);;
+	private static ArrayList<ImageIcon> lstImageS = new ArrayList<>(lstImageSFinal);
+	private Controleur ctrl;
+
+	public Pioche(Controleur ctrl) 
 	{
+		this.ctrl = ctrl;
 		Collections.shuffle(lstImageP);
 		Collections.shuffle(lstImageS);
 	}
@@ -35,6 +40,7 @@ public class Pioche
 
 	public ImageIcon piocher()
 	{
+		this.ctrl.getJoueur().setAJoue(false);
 		if (lstImageP.isEmpty())
 		{
 			System.out.println("Pioche vide");
@@ -50,6 +56,11 @@ public class Pioche
 
 				img = lstImageP.get(rdm);
 				lstImageP.remove(rdm);
+			}
+			else if (rdm == lstImageP.size())
+			{
+				img = lstImageS.get(0);
+				lstImageS.remove(0);
 			}
 			else
 			{
@@ -72,7 +83,7 @@ public class Pioche
 		return lstImageP.isEmpty();
 	}
 
-	public void reset() 
+	public void reset()
 	{
 		System.out.println("dans reset");
 		lstImageP.clear();

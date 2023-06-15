@@ -6,9 +6,10 @@ package vue;
 
 
 import javax.swing.*;
+import javax.swing.plaf.synth.SynthSeparatorUI;
+
 import controleur.Controleur;
 import java.awt.*;
-import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
@@ -22,6 +23,8 @@ public class PanelIles extends JPanel implements MouseListener
 
 	private Controleur   ctrl;
 	private JPanel       pnlSolo;
+	private static int nbIleSelectionne =0;
+	private int jouer = 0;
 
 	public PanelIles(Controleur ctrl) 
 	{
@@ -39,7 +42,7 @@ public class PanelIles extends JPanel implements MouseListener
 		this.add(pnlSolo);
 
 		/*-------------------------------*/
-		/* Finalisation                  */
+		/* 			Finalisation         */
 		/*-------------------------------*/
 
 		pnlSolo.setVisible(true);
@@ -49,6 +52,21 @@ public class PanelIles extends JPanel implements MouseListener
 		this.addMouseListener(this);
 
 	}
+	
+	public void paintComponent(Graphics g)
+	{
+		super.paintComponent(g);
+
+		//Background
+		g.drawImage(new ImageIcon("./images/bg.gif").getImage(), 0, 0, this.getWidth(), this.getHeight(), this);
+		Graphics2D g2 = (Graphics2D) g;
+
+		// Dessine une image en bas Du Panel
+		this.drawArete(g2);
+		this.drawIles(g2);
+		Image titre = Toolkit.getDefaultToolkit().getImage("./images/cinke_terra.png");
+		g.drawImage(titre, 500, 5, (int) (titre.getWidth(this) * 0.4), (int) (titre.getHeight(this) * 0.4), this);
+	}
 
 	public void drawIles(Graphics g)
 	{
@@ -56,6 +74,10 @@ public class PanelIles extends JPanel implements MouseListener
 
 		for (Ile ile : this.ctrl.getGraphe().getEnsIle())
 		{
+			if (nbIleSelectionne >= 1)
+			{
+				ile.setEstSelectionne(false);
+			}
 			Image imageIle = ile.getImage();
 
 			int x = ile.getCoCentreX();
@@ -80,10 +102,23 @@ public class PanelIles extends JPanel implements MouseListener
 
 			if (ile.estSelectionne())
 			{
+
 				highlightSelectedIle(g, ile);
 			}
 		}
 	}
+	private void highlightSelectedIle(Graphics g, Ile ile)
+	{
+		int x = ile.getCoCentreX();
+		int y = ile.getCoCentreY();
+		int highlightRadius = 15;
+
+		g.setColor(Color.YELLOW);
+		int resizedX = (int) (x * resize) - highlightRadius / 2 + 50;
+		int resizedY = (int) (y * resize) - highlightRadius / 2 + 50;
+		g.fillOval(resizedX, resizedY, highlightRadius, highlightRadius);
+	}
+
 
 	public void drawArete(Graphics g)
 	{
@@ -124,33 +159,9 @@ public class PanelIles extends JPanel implements MouseListener
 		return bufferedImage;
 	}
 
-	public void paintComponent(Graphics g)
-	{
-		super.paintComponent(g);
+	
 
-		//Background
-		g.drawImage(new ImageIcon("./images/bg.gif").getImage(), 0, 0, this.getWidth(), this.getHeight(), this);
-		Graphics2D g2 = (Graphics2D) g;
-
-		// Dessine une image en bas Du Panel
-		this.drawArete(g2);
-		this.drawIles(g2);
-		Image titre = Toolkit.getDefaultToolkit().getImage("./images/cinke_terra.png");
-		g.drawImage(titre, 500, 5, (int) (titre.getWidth(this) * 0.4), (int) (titre.getHeight(this) * 0.4), this);
-	}
-
-	private void highlightSelectedIle(Graphics g, Ile ile)
-	{
-		int x = ile.getCoCentreX();
-		int y = ile.getCoCentreY();
-		int highlightRadius = 15;
-
-		g.setColor(Color.YELLOW);
-		int resizedX = (int) (x * resize) - highlightRadius / 2 + 50;
-		int resizedY = (int) (y * resize) - highlightRadius / 2 + 50;
-		g.fillOval(resizedX, resizedY, highlightRadius, highlightRadius);
-	}
-
+	
 	public void mouseClicked(MouseEvent evt)
 	{
 		if (evt.getClickCount() == 1)
@@ -160,6 +171,7 @@ public class PanelIles extends JPanel implements MouseListener
 			int mouseX = evt.getX();
 			int mouseY = evt.getY();
 
+			nbIleSelectionne = 0;
 			for (Ile ile : ctrl.getGraphe().getEnsIle())
 			{
 				Image imageIle    = ile.getImage();
@@ -168,11 +180,16 @@ public class PanelIles extends JPanel implements MouseListener
 				int resizedWidth  = (int) (imageIle.getWidth(PanelIles.this) * resize);
 				int resizedHeight = (int) (imageIle.getHeight(PanelIles.this) * resize);
 
-				int imageX = resizedPosX + getX() + 20;
+				int imageX = resizedPosX + getX() + 20; //ch4
 				int imageY = resizedPosY + getY() + 20;
+				
 
 				// if (mouseX >= ile.getImage().getWidth(this) && mouseX < ile.getImage().getWidth(this) + resizedWidth &&
 				// 		mouseY >= ile.getImage().getHeight(this) && mouseY < ile.getImage().getHeight(this) + resizedHeight)
+				if (ile.estSelectionne())
+					{
+						nbIleSelectionne++;
+					}
 				if (mouseX >= imageX - 30 && mouseX < imageX + resizedWidth + 30 &&
                 	mouseY >= imageY - 30 && mouseY < imageY + resizedHeight + 30)
 				{
@@ -183,12 +200,14 @@ public class PanelIles extends JPanel implements MouseListener
 						System.out.println("Image " + ile.getNom() + " sélectionnée");
 						// this.ctrl.setLbl(ile.getNom());
 						ile.selectionneIle(this.ctrl.getGraphe());
+					
 						repaint();
 					}
 					else
 					{
 						System.out.println("Image non sélectionnée");
 					}
+					
 				}
 			}
 
@@ -227,6 +246,7 @@ public class PanelIles extends JPanel implements MouseListener
 									&& !this.ctrl.getGraphe().getEnsSommetVisite().isEmpty())
 								{
 										System.out.println("L'arête n'est pas connectée à une arête colorée");
+										Boolean bConnect = false;
 										return;
 								}
 
@@ -257,15 +277,16 @@ public class PanelIles extends JPanel implements MouseListener
 								// Vérification de la couleur de l'ile avec la carte
 								String couleur = this.ctrl.getFrameAccueil().getFrameSolo().getPnlDroit().getPnlPioche().getTypeCouleur();
 								System.out.println("Couleur : " + couleur);
-								if (!((tmp.getIle1().getCouleur().equals(couleur) && tmp.getIle2() == this.ctrl.getGraphe().getIleArrivee()) 
-									|| (tmp.getIle1().getCouleur().equals(couleur) && tmp.getIle2() == this.ctrl.getGraphe().getIleDepart())
+								if (!( (tmp.getIle1().getCouleur().equals(couleur) && tmp.getIle2() == this.ctrl.getGraphe().getIleArrivee()) 
+									|| (tmp.getIle1().getCouleur().equals(couleur) && tmp.getIle2() == this.ctrl.getGraphe().getIleDepart() )
 									|| (tmp.getIle2().getCouleur().equals(couleur) && tmp.getIle1() == this.ctrl.getGraphe().getIleArrivee()) 
-									|| (tmp.getIle2().getCouleur().equals(couleur) && tmp.getIle1() == this.ctrl.getGraphe().getIleDepart())
+									|| (tmp.getIle2().getCouleur().equals(couleur) && tmp.getIle1() == this.ctrl.getGraphe().getIleDepart() )
 									) && couleur != "Joker")
 								{
 									System.out.println(" nom ile 1: " + tmp.getIle1().getNom() + ", coul :  " + tmp.getIle1().getCouleur());
 									System.out.println(" nom ile 2: " + tmp.getIle2().getNom() + ", coul :  " + tmp.getIle2().getCouleur());
 									System.out.println("La couleur de l'ile n'est la même que la carte");
+									Boolean bCouleur = false;
 									return;
 
 								}
@@ -273,11 +294,27 @@ public class PanelIles extends JPanel implements MouseListener
 							else
 							System.out.println("Il n'y a pas d'arête colorée");
 
-							this.ctrl.getGraphe().ajouterAreteColorer(a);
-							a.getIle1().selectionneIle(this.ctrl.getGraphe());
-							a.getIle2().selectionneIle(this.ctrl.getGraphe());
+							if (this.ctrl.getJoueur().getAJoue() == false)
+							{
+								System.out.println("La couleur est eeeeeeeeeeeeeeeeee"+a.getCouleur());
+								if (a.getCouleur().equals(Color.GREEN))
+								{
+									System.out.println("même couleur");
+									this.ctrl.getScore().ajouterBonus();
+								}
 
-							if (a.getCouleur().equals(Color.GREEN))
+								this.ctrl.getGraphe().ajouterAreteColorer(a);
+
+								
+								a.getIle1().selectionneIle(this.ctrl.getGraphe());
+								a.getIle2().selectionneIle(this.ctrl.getGraphe());
+								this.ctrl.getJoueur().setAJoue(true);
+
+								this.ctrl.getScore().ajouterRegion();
+
+							}
+
+							
 
 							System.out.println("Arete " + a.getIle1().getNom() + " " + a.getIle2().getNom() + " sélectionnée");
 							System.out.println("Couleur : " + a.getCouleur());

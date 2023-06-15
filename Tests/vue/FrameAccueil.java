@@ -15,6 +15,7 @@ public class FrameAccueil extends JFrame
 	private PanelAccueil 	pnlAccueil;
 	private FrameSolo		frameSolo;
 	private FrameMulti		frameMulti;
+	private FrameTest		frameTest;
 
 
 	public FrameAccueil(Controleur ctrl)
@@ -33,6 +34,7 @@ public class FrameAccueil extends JFrame
 		this.pnlAccueil = new PanelAccueil(ctrl);
 		this.frameSolo  = null;
 		this.frameMulti = null;
+		this.frameTest  = null;
 
 		/*-------------------------------*/
 		/* Positionnement des composants */
@@ -51,29 +53,23 @@ public class FrameAccueil extends JFrame
 
 	public void Solo()
 	{
-		
 		this.frameSolo = new FrameSolo(this.ctrl);
 		this.dispose();
 	}
 
 	public void Multi()
 	{
-		
 		this.frameMulti = new FrameMulti(this.ctrl);
 		this.dispose();
 	}
 
-	public void Accueil()
+	public void Test()
 	{
-		new FrameAccueil(this.ctrl);
-		
+		this.frameTest = new FrameTest(this.ctrl);
+		this.dispose();
 	}
-	public FrameSolo getFrameSolo()
-	{
-		return this.frameSolo;
-	}
-	public FrameMulti getFrameMulti()
-	{
-		return this.frameMulti;
-	}
+
+	public void Accueil()             { new FrameAccueil(this.ctrl); }
+	public FrameSolo getFrameSolo()   { return this.frameSolo; }
+	public FrameMulti getFrameMulti() { return this.frameMulti; }
 }

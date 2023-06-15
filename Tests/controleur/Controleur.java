@@ -29,7 +29,7 @@ public class Controleur
 		this.graphe 		= new Graphe("graphe",this);
 		this.lf 			= new LireFichier("./data/data.txt", this);
 		this.lf.lire();
-		this.pioche 		= new Pioche();
+		this.pioche 		= new Pioche(this);
 		frameAccueil 		= new FrameAccueil(this);
 		this.score 			= new Score(this);
 		this.lblBandeau = "";
@@ -40,7 +40,7 @@ public class Controleur
 		Controleur ctrl = new Controleur();
 
 		System.out.println("Nombre d'arete : " + ctrl.getGraphe().getEnsArete().size());
-		System.out.println("Nombre d'ile : " + ctrl.getGraphe().getEnsIle().size());
+		System.out.println("Nombre d'ile : "   + ctrl.getGraphe().getEnsIle().size());
 	}
 	
 	public void Solo()
@@ -51,6 +51,11 @@ public class Controleur
 	public void Multi()
 	{
 		this.frameAccueil.Multi();
+	}
+
+	public void Test()
+	{
+		this.frameAccueil.Test();
 	}
 
 	public Graphe getGraphe() 
@@ -76,6 +81,4 @@ public class Controleur
 	{
 		return this.score;
 	}
-
 }
-

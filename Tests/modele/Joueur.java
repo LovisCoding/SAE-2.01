@@ -17,6 +17,7 @@ public class Joueur
 	private boolean 	changementCouleur;	
 	private Color 		couleurJoueur;
 	private int 		points;
+	private boolean 	aJoue;
 
 	public Joueur(Controleur ctrl)
 	{
@@ -24,6 +25,7 @@ public class Joueur
 		System.out.println("rdm :" + rdmColor1);
 		this.couleurJoueur =  tabCoul[rdmColor1];
 		this.points        = 0;
+		this.aJoue         = true;
 	}
 	
 	public Color 	getCouleurJoueur()		  				{return this.couleurJoueur	     	;}
@@ -35,6 +37,8 @@ public class Joueur
 	public void 	setPoints(int points)		   	   	 	{this.points = points		    	;}
 	public void 	setChangementCouleur()			  	  	{this.changementCouleur = false		;}
 	public void 	ajouterPoints(int points)			  	{this.points += points	    	 	;}
+	public boolean 	getAJoue()								{return this.aJoue					;}
+	public void 	setAJoue(boolean aJoue)					{this.aJoue = aJoue					;}
 	public void 	changerCouleur()						
 	{
 		this.couleurJoueur 		= tabCoul[rdmColor2];

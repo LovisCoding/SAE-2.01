@@ -158,11 +158,13 @@ public class PanelScore extends JPanel implements ActionListener
 			//réactualisation du panel
 		this.ctrl.getFrameAccueil().getFrameSolo().getPnlDroit().getPnlPioche().nextRound();
 	}
-	public void maj(String nbRegion, String nbRegionMax, String bonus, String scoreLigne, String scoreFinal)
+	public void maj(String nbRegion, String nbRegionMax, String multRegion,String bonus, String scoreLigne, String scoreFinal)
 	{
-		this.txtNbRegion1.setText(""+nbRegion	);
-		this.txtNbMax1	 .setText(""+nbRegionMax);
-		this.txtBonus1	 .setText(""+bonus		);
-		this.txtScore1	 .setText(""+scoreLigne	);
+		this.txtNbRegion1.setText(nbRegion	);
+		this.txtNbMax1	 .setText(nbRegionMax);
+		this.txtSommeReg .setText(multRegion);
+		this.txtBonus1	 .setText(bonus		);
+		this.txtScore1	 .setText(scoreLigne	);
+		this.txtScoreFinal.setText(scoreFinal);
 	}
 }

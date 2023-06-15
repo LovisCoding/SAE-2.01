@@ -13,6 +13,7 @@ public class PanelAccueil extends JPanel implements ActionListener
 	private JPanel 		pnlAccueil;
 	private JButton 	btnSolo;
 	private JButton 	btnMulti;
+	private JButton 	btnTest;
 
 	public PanelAccueil(Controleur ctrl) 
 	{	
@@ -21,25 +22,28 @@ public class PanelAccueil extends JPanel implements ActionListener
 		/*-------------------------*/
 
 		this.ctrl = ctrl;
-		this.pnlAccueil = new JPanel();
+		pnlAccueil = new JPanel();
 
-		this.setLayout(new GridLayout(2,1));
+		pnlAccueil.setLayout(new GridLayout(3,1));
 		
 		/*-------------------------------*/
 		/* positionnement des composants */
 		/*-------------------------------*/
-		this.btnSolo  = new JButton("Solo");
+		this.btnSolo  = new JButton("Solo"		 );
 		this.btnMulti = new JButton("Multijoueur");
+		this.btnTest  = new JButton("Scenario"	 );
 
-		this.pnlAccueil.add(this.btnSolo);
-		this.pnlAccueil.add(this.btnMulti);
+		pnlAccueil.add(this.btnSolo);
+		pnlAccueil.add(this.btnMulti);
+		pnlAccueil.add(this.btnTest);
 		this.add(pnlAccueil);
 
 		/*-------------------------------*/
 		/* Finalisation                  */
 		/*-------------------------------*/
-		this.btnSolo.addActionListener(this);
+		this.btnSolo .addActionListener(this);
 		this.btnMulti.addActionListener(this);
+		this.btnTest .addActionListener(this);
 	}
 	
 	public void actionPerformed(ActionEvent e)
@@ -47,5 +51,7 @@ public class PanelAccueil extends JPanel implements ActionListener
 		if(e.getSource() == this.btnSolo) {this.ctrl.Solo();}
 
 		if (e.getSource() == this.btnMulti) {this.ctrl.Multi();}
+
+		if (e.getSource() == this.btnTest) {this.ctrl.Test();}
 	}
 }

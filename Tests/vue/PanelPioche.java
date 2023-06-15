@@ -146,5 +146,6 @@ public class PanelPioche extends JPanel implements ActionListener
 		this.ctrl.getJoueur().changerCouleur();
 		System.out.println(this.ctrl.getJoueur().getRdmColor1());
 		this.ctrl.getGraphe().reset();
+		this.ctrl.getJoueur().setAJoue(true);
 	}
 }
