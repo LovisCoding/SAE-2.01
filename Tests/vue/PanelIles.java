@@ -299,7 +299,6 @@ public class PanelIles extends JPanel implements MouseListener
 
 							if (this.ctrl.getJoueur().getAJoue() == false)
 							{
-								System.out.println("La couleur est eeeeeeeeeeeeeeeeee"+a.getCouleur());
 
 								if (a.getCouleur().equals(Color.GREEN))
 								{
@@ -344,5 +343,9 @@ public class PanelIles extends JPanel implements MouseListener
 		}
 		
 		return false;
+	}
+	public void setTour1True()
+	{
+		 ile1= true;
 	}
 }

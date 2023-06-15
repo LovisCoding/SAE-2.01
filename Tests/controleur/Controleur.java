@@ -31,9 +31,7 @@ public class Controleur
 		frameAccueil 		= new FrameAccueil(this);
 		this.score 			= new Score(this);
 		
-
-		if (!bScenario)
-		this.pioche.melanger();
+		this.scriptScenario1 = null;
 	}
 
 	public static void main(String args[])

@@ -37,7 +37,7 @@ public class Score
 		maj();
 	}
 
-	public void creerRegions()
+	public void creerRegions()  //Calculer le nombre de région et le nombre de région max
 	{
 		ArrayList<Ile> listeIle = new ArrayList<Ile>();
 		int tabGroupIles[] = new int [6];
@@ -87,10 +87,6 @@ public class Score
 
 	public void maj ()
 	{
-		//Verification si c'est la première partie
-
-
-
 		creerRegions();
 		scoreLigneActuelle = nbRegion*nbRegionMax+bonus;
 
@@ -111,7 +107,8 @@ public class Score
 		scoreLigneActuelle =0;
 		bonus = 0;
 		verif = true;
-		ensAreteColoree.clear();
+		ensAreteColoree.clear(); //vide pour le deuxieme tour
+		this.ctrl.getFrameAccueil().getFrameSolo().getpanelIles().setTour1True(); 
 		maj();
 	}
 }

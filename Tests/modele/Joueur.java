@@ -45,6 +45,8 @@ public class Joueur
 	{
 		rdmColor1= i;
 		rdmColor2 = 1-rdmColor1;
+		this.ctrl.getFrameAccueil().getFrameSolo().getpanelBandeau().repaint();
+		
 	}
 	
 	public void 	changerCouleur()						

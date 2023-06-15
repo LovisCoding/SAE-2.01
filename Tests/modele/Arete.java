@@ -23,10 +23,7 @@ public class Arete
 
 	public Arete(int num, Ile ile1, Ile ile2, Color couleur) 
 	{
-		this.num 	= num;
-		this.ile1	= ile1;
-		this.ile2	= ile2;
-		this.valeur	= 0;
+		this(num, ile1, ile2);
 		this.couleur= couleur;
 	}
 
