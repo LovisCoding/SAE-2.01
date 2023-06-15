@@ -31,7 +31,7 @@ public class FrameAccueil extends JFrame
 		/*-------------------------*/
 
 		this.pnlAccueil = new PanelAccueil(ctrl);
-		this.frameSolo = null;
+		this.frameSolo  = null;
 		this.frameMulti = null;
 
 		/*-------------------------------*/

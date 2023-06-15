@@ -13,12 +13,12 @@ import controleur.Controleur;
 
 public class PanelBandeau extends JPanel //implements ActionListener
 {
+	private static boolean lbl1 = true; 			//permet de passer de labelIle1 à labelIle2
 	
 	private Controleur 	ctrl;
 	private JLabel 		lblIle1;
 	private JLabel 		lblIle2;
 	private JLabel      lblcouleur;
-	private static boolean lbl1 = true; 			//permet de passer de labelIle1 à labelIle2
 
 	public PanelBandeau(Controleur ctrl) 
 	{

@@ -21,6 +21,7 @@ public class Controleur
 	private Pioche 			pioche;
 	private Joueur 			joueur;
 	private String 			lblBandeau;
+	private Score 			score;
 	
 	public Controleur() 
 	{
@@ -29,7 +30,8 @@ public class Controleur
 		this.lf 			= new LireFichier("./data/data.txt", this);
 		this.lf.lire();
 		this.pioche 		= new Pioche();
-		this.frameAccueil 	= new FrameAccueil(this);
+		frameAccueil 		= new FrameAccueil(this);
+		this.score 			= new Score(this);
 		this.lblBandeau = "";
 	}
 
@@ -68,6 +70,11 @@ public class Controleur
 	public FrameAccueil getFrameAccueil()
 	{
 		return this.frameAccueil;
+	}
+
+	public Score getScore()
+	{
+		return this.score;
 	}
 
 }

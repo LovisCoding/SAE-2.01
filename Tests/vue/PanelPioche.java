@@ -92,7 +92,7 @@ public class PanelPioche extends JPanel implements ActionListener
 						this.type = "Brun";
 						break;
 
-					case "./images/cartes/carte_vert_p.png":
+					case "./images/cartes/carte_verte_p.png":
 						this.type = "Vert";
 						break;
 
@@ -108,7 +108,7 @@ public class PanelPioche extends JPanel implements ActionListener
 						this.type = "Brun";
 						break;
 
-					case "./images/cartes/carte_vert_s.png":
+					case "./images/cartes/carte_verte_s.png":
 						this.type = "Vert";
 						break;
 
@@ -119,6 +119,7 @@ public class PanelPioche extends JPanel implements ActionListener
 					case "./images/cartes/carte_jaune_s.png":
 						this.type = "Jaune";
 						break;
+
 					default :
 						this.type = "Erreur";
 						break;
@@ -144,6 +145,6 @@ public class PanelPioche extends JPanel implements ActionListener
 		System.out.println(this.ctrl.getJoueur().getRdmColor1());
 		this.ctrl.getJoueur().changerCouleur();
 		System.out.println(this.ctrl.getJoueur().getRdmColor1());
-
+		this.ctrl.getGraphe().reset();
 	}
 }

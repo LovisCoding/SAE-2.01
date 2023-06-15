@@ -27,12 +27,12 @@ public class Graphe
 	public Graphe(String nom,Controleur ctlr) 
 	{
 		this.nom             	= nom;
-		this.ensArete        	= new ArrayList<Arete>();
-		this.ensIles       		= new ArrayList<Ile>();
-		this.ensAreteColorer 	= new ArrayList<Arete>();
-		this.ensIlesVisite 		= new ArrayList<Ile>();
 		this.ctrl 				= ctlr;
-		this.ileDepart 			= new Ile("Depart", "Blanc", 0, 0, 0, 0, 0);
+		this.ensArete        	= new ArrayList<Arete>	();
+		this.ensIles       		= new ArrayList<Ile>	();
+		this.ensAreteColorer 	= new ArrayList<Arete>	();
+		this.ensIlesVisite 		= new ArrayList<Ile>	();
+		this.ileDepart 			= new Ile("Depart", "Blanc" , 0, 0, 0, 0, 0);
 		this.ileArrivee 		= new Ile("Arrivee", "Blanc", 0, 0, 0, 0, 0);
 	}
 
@@ -136,5 +136,13 @@ public class Graphe
 			}
 		}
 		return false;
+	}
+
+	public void reset()
+	{
+		this.ensIlesVisite.clear();
+		this.ileArrivee = new Ile("Arrivee", "Blanc", 0, 0, 0, 0, 0);
+		this.ileDepart  = new Ile("Depart", "Blanc" , 0, 0, 0, 0, 0);
+
 	}
 }

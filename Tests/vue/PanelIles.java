@@ -1,4 +1,9 @@
+/*Classe PanelIles qui affiche toute la carte
+ *Auteurs : Louis Marouard, Maxime Galmant, Evan Cnaepelnickx, Arthur Lecomte
+*/
+
 package vue;
+
 
 import javax.swing.*;
 import controleur.Controleur;
@@ -61,7 +66,7 @@ public class PanelIles extends JPanel implements MouseListener
 			int resizedPosY = (int) (ile.getPosImageY() * resize);
 
 			g.drawImage(imageIle, resizedPosX + 50, resizedPosY + 50,
-				(int) ( imageIle.getWidth(this) * resize),
+				(int) ( imageIle.getWidth (this) * resize),
 				(int) ( imageIle.getHeight(this) * resize), this);
 
 			g.setColor(Color.BLACK);
@@ -215,16 +220,19 @@ public class PanelIles extends JPanel implements MouseListener
 								Arete tmp = new Arete(a.getNum(), a.getIle1(), a.getIle2(),
 									this.ctrl.getJoueur().getCouleurJoueur());
 
+								
 								// Vérifie si l'arête est connecter a une arête colorée
 								if (!tmp.getIle1().areteLiee(this.ctrl.getGraphe().getEnsAreteColorer())
-									&& !tmp.getIle2().areteLiee(this.ctrl.getGraphe().getEnsAreteColorer()))
+									&& !tmp.getIle2().areteLiee(this.ctrl.getGraphe().getEnsAreteColorer())
+									&& !this.ctrl.getGraphe().getEnsSommetVisite().isEmpty())
 								{
 										System.out.println("L'arête n'est pas connectée à une arête colorée");
 										return;
 								}
 
-								if (!this.ctrl.getGraphe().getIleDepart().areteLiee(tmp) &&
-									!this.ctrl.getGraphe().getIleArrivee().areteLiee(tmp) )
+								if (!this.ctrl.getGraphe().getIleDepart().areteLiee(tmp) 
+									&& !this.ctrl.getGraphe().getIleArrivee().areteLiee(tmp)
+									&& !this.ctrl.getGraphe().getEnsSommetVisite().isEmpty())
 								{
 									System.out.println("Ext 1 : " + this.ctrl.getGraphe().getIleDepart()
 										+ " Ext 2 : " + this.ctrl.getGraphe().getIleArrivee());
@@ -249,11 +257,11 @@ public class PanelIles extends JPanel implements MouseListener
 								// Vérification de la couleur de l'ile avec la carte
 								String couleur = this.ctrl.getFrameAccueil().getFrameSolo().getPnlDroit().getPnlPioche().getTypeCouleur();
 								System.out.println("Couleur : " + couleur);
-								if ((!tmp.getIle1().getCouleur().equals(couleur) || !tmp.getIle2().getCouleur().equals(couleur)) && couleur != "Joker"
-									&& (tmp.getIle1() != this.ctrl.getGraphe().getIleDepart()
-									|| tmp.getIle2() != this.ctrl.getGraphe().getIleDepart()
-									|| tmp.getIle1() != this.ctrl.getGraphe().getIleArrivee()
-									|| tmp.getIle2() != this.ctrl.getGraphe().getIleArrivee()))
+								if (!((tmp.getIle1().getCouleur().equals(couleur) && tmp.getIle2() == this.ctrl.getGraphe().getIleArrivee()) 
+									|| (tmp.getIle1().getCouleur().equals(couleur) && tmp.getIle2() == this.ctrl.getGraphe().getIleDepart())
+									|| (tmp.getIle2().getCouleur().equals(couleur) && tmp.getIle1() == this.ctrl.getGraphe().getIleArrivee()) 
+									|| (tmp.getIle2().getCouleur().equals(couleur) && tmp.getIle1() == this.ctrl.getGraphe().getIleDepart())
+									) && couleur != "Joker")
 								{
 									System.out.println(" nom ile 1: " + tmp.getIle1().getNom() + ", coul :  " + tmp.getIle1().getCouleur());
 									System.out.println(" nom ile 2: " + tmp.getIle2().getNom() + ", coul :  " + tmp.getIle2().getCouleur());
@@ -268,6 +276,8 @@ public class PanelIles extends JPanel implements MouseListener
 							this.ctrl.getGraphe().ajouterAreteColorer(a);
 							a.getIle1().selectionneIle(this.ctrl.getGraphe());
 							a.getIle2().selectionneIle(this.ctrl.getGraphe());
+
+							if (a.getCouleur().equals(Color.GREEN))
 
 							System.out.println("Arete " + a.getIle1().getNom() + " " + a.getIle2().getNom() + " sélectionnée");
 							System.out.println("Couleur : " + a.getCouleur());
