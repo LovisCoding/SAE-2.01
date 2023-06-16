@@ -39,6 +39,7 @@ public class PanelScore extends JPanel implements ActionListener
 
 	private JLabel 		lblScore;
 	private JButton 	btnTour;
+	private JButton 	btnFinPartie;
 
 	public PanelScore(Controleur ctrl) 
 	{
@@ -52,6 +53,7 @@ public class PanelScore extends JPanel implements ActionListener
 
 		JPanel panelCentre = new JPanel();
 		Icon iconNext 	 = new ImageIcon("./images/next.png");
+		Icon iconFin 	 = new ImageIcon("./images/arrivee.png");
 
 		this.txtNbRegion1 	= new  JTextField("",3);
 		this.txtNbMax1 		= new  JTextField("",3);
@@ -62,6 +64,7 @@ public class PanelScore extends JPanel implements ActionListener
 		
 		this.lblScore 		= new  JLabel("Score",SwingConstants.CENTER);
 		this.btnTour 		= new  JButton(iconNext);
+		this.btnFinPartie	= new JButton(iconFin);
 
 		Border lineborder = BorderFactory.createLineBorder(Color.black, 1);
 
@@ -92,9 +95,11 @@ public class PanelScore extends JPanel implements ActionListener
 		this.lblScore.setFont(new Font("Arial",Font.BOLD,18));
 
 		this.btnTour.setVisible(false); 	//affichage des que pile vide
+		this.btnFinPartie.setVisible(false); 	//affichage des que pile vide
 
 		panelScore.setLayout(new BorderLayout());
 		panelCentre.setLayout(new GridLayout(9,2,8,8));
+		this.setLayout(new BorderLayout());
 		
 		/*-------------------------------*/
 		/* positionnement des composants */
@@ -103,7 +108,7 @@ public class PanelScore extends JPanel implements ActionListener
 		//Ajout au panel Centre
 		panelCentre.add(new JLabel("nb Region")	);
 		panelCentre.add(this.txtNbRegion1			);
-		panelCentre.add(new JLabel("x")			);
+		panelCentre.add(new JLabel("x",SwingConstants.CENTER)			);
 		panelCentre.add(new JLabel(" ")			);
 		panelCentre.add(new JLabel("nbRegion max"));
 		panelCentre.add(this.txtNbMax1			);
@@ -116,19 +121,29 @@ public class PanelScore extends JPanel implements ActionListener
 		panelCentre.add(new JLabel("score final")	);
 		panelCentre.add(this.txtScoreFinal		);
 		
-		panelScore.add(this.btnTour,BorderLayout.NORTH );
+		
 		panelScore.add(lblScore,	  BorderLayout.CENTER);// Ajoute un espace entre le le label et le panel
 		panelScore.add(panelCentre,	  BorderLayout.SOUTH );
 		
-		this.add(panelScore);
+		this.add(panelScore,BorderLayout.NORTH );
+		this.add(this.btnTour,BorderLayout.CENTER );
+		this.add(btnFinPartie,BorderLayout.SOUTH);
 
-		this.txtNbMax1   .addActionListener(this);
-		this.txtNbRegion1.addActionListener(this);
-		this.txtBonus1   .addActionListener(this);
+		this.btnFinPartie.addActionListener(this);
 		this.btnTour	 .addActionListener(this);
+
 	}
 
-	public void actionPerformed(ActionEvent e) { if (e.getSource()==this.btnTour) {prochainTour();} }
+	public void actionPerformed(ActionEvent e) 
+	{ 
+		if (e.getSource()==this.btnTour) {prochainTour();} 
+		if (e.getSource()==this.btnFinPartie)
+		{
+			JOptionPane.showMessageDialog(null, "Fin de la partie, votre score est de : " + this.ctrl.getScore().getScoreFinal() + " points");
+			this.ctrl.getFrameAccueil().getFrameSolo().dispose(); 
+		}
+
+}
 	public void affichageBoutonTour()
 	{
 		if (affiche)
@@ -136,11 +151,12 @@ public class PanelScore extends JPanel implements ActionListener
 			affiche = false;
 			this.btnTour.setVisible(true);
 		}
-		else 
+		else
 		{
-			JOptionPane.showMessageDialog(null, "Fin de la partie, votre score est de : " + this.txtScoreFinal.getText() + " points");
-			this.ctrl.getFrameAccueil().getFrameSolo().dispose(); 
+			this.btnFinPartie.setVisible(true);
+			this.ctrl.getFrameAccueil().getFrameSolo().getpanelIles().setfinPartie(true);
 		}
+		
 	}
 
 	public void prochainTour()
@@ -149,7 +165,7 @@ public class PanelScore extends JPanel implements ActionListener
 		score.prochainTour();
 		
 		//réactualisation du panel
-		this.ctrl.getFrameAccueil().getFrameSolo().getpanelDroit().getpanelPioche().nextRound();
+		this.ctrl.getFrameAccueil().getFrameSolo().getpanelDroit().getPanelPioche().nextRound();
 	}
 	
 	public void maj(String nbRegion, String nbRegionMax, String multRegion,String bonus, String scoreLigne, String scoreFinal)

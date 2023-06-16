@@ -1,10 +1,15 @@
+/*Classe Pioche qui permet de créer la pioche
+ *@author Louis Marouard, Maxime Galmant, Evan Cnaepelnickx, Arthur Lecomte
+*/
+
 package modele;
 import javax.swing.*;
 import java.util.*;
 
 import controleur.Controleur;
 
-public class Pioche {
+public class Pioche
+{
 	private final static ArrayList<ImageIcon> lstImagePFinal = new ArrayList<>(Arrays.asList(
 			new ImageIcon("./images/cartes/carte_jaune_p.png"),
 			new ImageIcon("./images/cartes/carte_joker_p.png"),
@@ -25,29 +30,33 @@ public class Pioche {
 	private static int index;
 	private Controleur ctrl;
 
-	public Pioche(Controleur ctrl) {
-		this.ctrl = ctrl;
-	}
+	public Pioche(Controleur ctrl) { this.ctrl = ctrl; }
 
-	public ImageIcon piocher() {
+	public ImageIcon piocher() 
+	{
 		this.ctrl.getJoueur().setAJoue(false);
 
-		if (lstImageP.isEmpty()) {
+		if (lstImageP.isEmpty())
+		{
 			System.out.println("Pioche vide");
 			return null;
-		} else {
+		}
+		
+		else
+		{
 			ImageIcon img = null;
-			if (!scenario) {
+			if (!scenario)
 				index = (int) (Math.random() * (lstImageP.size() + lstImageS.size()));
-				System.out.println("pas scenario mais tkt");
-			} 
+				System.out.println("Index = " + index);
 
-			System.out.println("Index = " + index);
-
-			if (index < lstImageP.size()) {
+			if (index < lstImageP.size())
+			{
 				img = lstImageP.get(index);
 				lstImageP.remove(index);
-			} else {
+			}
+			
+			else
+			{
 				index = index - lstImageP.size();
 				img = lstImageS.get(index);
 				lstImageS.remove(index);
@@ -58,30 +67,26 @@ public class Pioche {
 		}
 	}
 
-	public int taillePioche() {
-		return lstImageP.size();
-	}
+	public int taillePioche() { return lstImageP.size(); }
 
-	public boolean estVide() {
-		return lstImageP.isEmpty();
-	}
+	public boolean estVide() { return lstImageP.isEmpty(); }
 
-	public void reset() {
+	public void reset()
+	{
 		lstImageP = new ArrayList<>(lstImagePFinal);
 		lstImageS = new ArrayList<>(lstImageSFinal);
-		if (!scenario) {
-			melanger();
-		}
+
+		if (!scenario) { melanger(); }
 	}
 
-	public void melanger() {
+	public void melanger()
+	{
 		Collections.shuffle(lstImageP);
 		Collections.shuffle(lstImageS);
+		index = (int) (Math.random() * (lstImageP.size() + lstImageS.size()));
 		scenario = false;
 		index = -1;
 	}
 
-	public void setIndex(int i) {
-		index = i;
-	}
+	public void setIndex(int i) { index = i; }
 }

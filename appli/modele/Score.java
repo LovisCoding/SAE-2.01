@@ -1,5 +1,5 @@
 /*Classe Score qui permet de calculer le score du Joueur
- *Auteurs : Louis Marouard, Maxime Galmant, Evan Cnaepelnickx, Arthur Lecomte
+ *@author Louis Marouard, Maxime Galmant, Evan Cnaepelnickx, Arthur Lecomte
 */
 
 package modele;
@@ -18,11 +18,10 @@ public class Score
 	private static int scoreLigneActuelle;
 	private static int scoreFinal;
 
-	private static List<Arete> ensAreteColoree ;
+	private static List<Arete> ensAreteColoree;
 
-	private boolean verif = false; 	
+	private boolean verif = false;
 	
-
 	private Controleur ctrl;
 
 	public Score(Controleur ctrl) 
@@ -37,11 +36,12 @@ public class Score
 		maj();
 	}
 
-	public void creerRegions()  //Calculer le nombre de région et le nombre de région max
+	public void CalculRegions()  //Calculer le nombre de région et le nombre de région max
 	{
 		ArrayList<Ile> listeIle = new ArrayList<Ile>();
 		int tabGroupIles[] = new int [6];
 		int compter = 0;
+
 		for (Arete a : ensAreteColoree) 
 		{
 			if (!listeIle.contains(a.getIle1())) { listeIle.add(a.getIle1()); }
@@ -55,39 +55,33 @@ public class Score
 			if (ile.getGroupIles()==3)	{tabGroupIles[3]++;}
 			if (ile.getGroupIles()==4)	{tabGroupIles[4]++;}
 			if (ile.getGroupIles()==5)	{tabGroupIles[5]++;}
-
-
 		}
+
 		//Calculer le maximum du tableau
 		for (int i = 1; i < tabGroupIles.length; i++) 
 		{
 			if (tabGroupIles[i]>nbRegionMax) {nbRegionMax = tabGroupIles[i];}
 		}
+
 		//compter le nombre de groupe d'ile > 0
 		for (int i = 1; i < tabGroupIles.length; i++) 
 		{
 			if (tabGroupIles[i]>0) {compter++;}
-
 		}
+
 		nbRegion = compter;
-
-
+	}
 	
-
-			
-		}
-	
-
-	public void ajouterBonus( )
+	public void ajouterBonus()
 	{
 		bonus +=2;
 		System.out.println("dans le bonus");
 		maj();
 	}
 
-	public void maj ()
+	public void maj()
 	{
-		creerRegions();
+		CalculRegions();
 		scoreLigneActuelle = nbRegion*nbRegionMax+bonus;
 
 		if (!verif)
@@ -97,7 +91,7 @@ public class Score
 		
 		else { scoreFinal = scoreTour1 +scoreLigneActuelle; }
 
-		this.ctrl.getFrameAccueil().getFrameSolo().getpanelDroit().getpanelScore().maj(""+nbRegion,""+nbRegionMax,""+(nbRegion*nbRegionMax),""+bonus,""+scoreLigneActuelle,""+scoreFinal);
+		this.ctrl.getFrameAccueil().getFrameSolo().getpanelDroit().getPanelScore().maj(""+nbRegion,""+nbRegionMax,""+(nbRegion*nbRegionMax),""+bonus,""+scoreLigneActuelle,""+scoreFinal);
 	}
 
 	public void prochainTour()
@@ -111,4 +105,6 @@ public class Score
 		this.ctrl.getFrameAccueil().getFrameSolo().getpanelIles().setTour1True(); 
 		maj();
 	}
+
+	public int getScoreFinal() { return scoreFinal; }
 }

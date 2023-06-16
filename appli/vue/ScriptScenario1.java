@@ -1,13 +1,10 @@
 package vue;
 
-import java.awt.AWTException;
-import java.awt.Robot;
-import java.awt.event.InputEvent;
 
 import controleur.Controleur;
 import modele.Arete;
 
-public class ScriptScenario1 
+public class ScriptScenario1 		//Demontrer que le pioche fonctionne
 {
 	private Controleur ctrl;
 
@@ -17,8 +14,8 @@ public class ScriptScenario1
 
 
 		this.ctrl.getJoueur().setRdmColor1(0); //Couleur rouge 
-		this.ctrl.getPioche().setIndex(0);	//Carte jaune Primaire
-		this.ctrl.getFrameAccueil().getFrameSolo().getpanelDroit().getpanelPioche().click();
+		this.ctrl.getPioche().setIndex(0);	//Carte jaune Brun 
+		this.ctrl.getFrameAccueil().getFrameSolo().getpanelDroit().getPanelPioche().click();
 		
 		
 	}

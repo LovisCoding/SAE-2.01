@@ -1,5 +1,5 @@
 /*Classe Fichier permettant de récupérer les données du fichier .txt 
- *Auteurs : Louis Marouard, Maxime Galmant, Evan Cnaepelnickx, Arthur Lecomte
+ *@author Louis Marouard, Maxime Galmant, Evan Cnaepelnickx, Arthur Lecomte
 */
 package modele;
 
@@ -58,8 +58,8 @@ public class LireFichier
 			{
 				String line = sc.nextLine();
 
-				if (line.equals("		Centre			Position image	"	))    	{line = sc.nextLine();}
-				if (line.equals("		x	y		x	y"	   				))    	{line = sc.nextLine();}
+				if (line.equals("		Centre			Position image	"	)) {line = sc.nextLine();}
+				if (line.equals("		x	y		x	y"	   				)) {line = sc.nextLine();}
 
 				if (line.equals("\t\t\t\t\t\t"	   							))
 				{
@@ -137,6 +137,6 @@ public class LireFichier
 		catch (FileNotFoundException e) {System.out.println("Fichier non trouvé");}
 	}
 	
-	public List<Ile> 	getLstIles  () 		{return this.lstIles  ;}
-	public List<Arete> 	getLstArete () 		{return this.lstAretes;}
+	public List<Ile> 	getLstIles  () {return this.lstIles  ;}
+	public List<Arete> 	getLstArete () {return this.lstAretes;}
 }

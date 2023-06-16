@@ -1,5 +1,5 @@
 /*Classe PanelIles qui affiche toute la carte
- *Auteurs : Louis Marouard, Maxime Galmant, Evan Cnaepelnickx, Arthur Lecomte
+ *@author Louis Marouard, Maxime Galmant, Evan Cnaepelnickx, Arthur Lecomte
 */
 
 package vue;
@@ -23,6 +23,8 @@ public class PanelIles extends JPanel implements MouseListener
 	private JPanel       pnlSolo;
 	private static int nbIleSelectionne =0;
 	private static boolean ile1 = true;
+	private static boolean ile2 = false; 
+	private static boolean finPartie = false;
 
 	public PanelIles(Controleur ctrl) 
 	{
@@ -82,8 +84,10 @@ public class PanelIles extends JPanel implements MouseListener
 	{
 		double resize = 0.8; // Facteur de redimensionnement
 
+		
 		for (Ile ile : this.ctrl.getGraphe().getEnsIle())
 		{
+			if (nbIleSelectionne > 1) { ile.setEstSelectionne(false); }
 			if (ile1)
 			{
 				if (ile.getNom().equals("Ticó") && this.ctrl.getJoueur().getRdmColor1() == 0)
@@ -100,8 +104,30 @@ public class PanelIles extends JPanel implements MouseListener
 						this.ctrl.getFrameAccueil().getFrameSolo().getpanelBandeau().setLbl(ile.getNom());
 						
 					}
+			
 				}
-			if (nbIleSelectionne >= 1) { ile.setEstSelectionne(false); }
+			if (ile2)
+			{
+				ile.setEstSelectionne(false);
+				if (ile.getNom().equals("Ticó") && this.ctrl.getJoueur().getRdmColor2() == 0)
+					{
+						ile.setEstSelectionne(true);
+						this.ctrl.getFrameAccueil().getFrameSolo().getpanelBandeau().setLbl(ile.getNom());
+						ile2 = false;
+						
+					}
+				if (ile.getNom().equals("Mutaa") && this.ctrl.getJoueur().getRdmColor2() == 1)
+					{
+						ile.setEstSelectionne(true);
+						ile2 = false;
+						this.ctrl.getFrameAccueil().getFrameSolo().getpanelBandeau().setLbl(ile.getNom());
+						
+					}
+			
+				}
+				
+			
+			
 
 			Image imageIle = ile.getImage();
 
@@ -125,7 +151,7 @@ public class PanelIles extends JPanel implements MouseListener
 
 			g.drawString(numero, resizedStringX, resizedStringY);
 
-			if (ile.estSelectionne()) { highlightSelectedIle(g, ile); }
+			if (ile.estSelectionne()) { highlightSelectedIle(g, ile);}
 		}
 	}
 	private void highlightSelectedIle(Graphics g, Ile ile)
@@ -293,7 +319,7 @@ public class PanelIles extends JPanel implements MouseListener
 							else { System.out.println("Il n'y a pas d'arête colorée"); }
 
 							// Vérification de la couleur
-							String couleur = ctrl.getFrameAccueil().getFrameSolo().getpanelDroit().getpanelPioche().getTypeCouleur();
+							String couleur = ctrl.getFrameAccueil().getFrameSolo().getpanelDroit().getPanelPioche().getTypeCouleur();
 							if (!tmp.bonneCouleur(ctrl) && couleur != "Joker")
 								return;
 
@@ -313,6 +339,11 @@ public class PanelIles extends JPanel implements MouseListener
 								this.ctrl.getJoueur().setAJoue(true);
 
 								this.ctrl.getScore().maj();
+								if (finPartie)
+								{
+									JOptionPane.showMessageDialog(null, "Fin de la partie, votre score est de : " + this.ctrl.getScore().getScoreFinal() + " points");
+									this.ctrl.getFrameAccueil().getFrameSolo().dispose(); 
+								}
 							}
 
 							System.out.println("Arete " + a.getIle1().getNom() + " " + a.getIle2().getNom() + " sélectionnée");
@@ -346,6 +377,10 @@ public class PanelIles extends JPanel implements MouseListener
 	}
 	public void setTour1True()
 	{
-		 ile1= true;
+		 ile2 = true;
+	}
+	public void setfinPartie(boolean b)
+	{
+		finPartie = b;
 	}
 }

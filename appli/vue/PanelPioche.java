@@ -126,7 +126,7 @@ public class PanelPioche extends JPanel implements ActionListener
 				System.out.println("Pioche vide");
 				this.btnCarteDos.setIcon(CarteVide);
 				this.btnCarteDos.setEnabled(false);
-				this.ctrl.getFrameAccueil().getFrameSolo().getpanelDroit().getpanelScore().affichageBoutonTour();
+				this.ctrl.getFrameAccueil().getFrameSolo().getpanelDroit().getPanelScore().affichageBoutonTour();
 			}
 		}
 	}

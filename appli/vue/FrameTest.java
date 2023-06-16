@@ -58,6 +58,10 @@ public class FrameTest extends JFrame implements ActionListener
 		/*         Finalisation          */
 		/*-------------------------------*/
 		this.btnScenario1.addActionListener(this);
+		this.btnScenario2.addActionListener(this);
+		this.btnScenario3.addActionListener(this);
+		this.btnScenario4.addActionListener(this);
+		this.btnScenario5.addActionListener(this);
 
 
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); //Fermeture de la fenêtre
@@ -78,6 +82,7 @@ public class FrameTest extends JFrame implements ActionListener
 		{
 			System.out.println("Activation du scenario 2");
 			this.ctrl.Solo();
+			this.ctrl.setScenario2();
 			this.dispose();
 		}
 
@@ -86,6 +91,10 @@ public class FrameTest extends JFrame implements ActionListener
 			System.out.println("Activation du scenario 3");
 			this.ctrl.Solo();
 			this.dispose();
+		}
+
+		if(e.getSource() == this.btnScenario4)
+		{
 			System.out.println("Activation du scenario 4");
 			this.ctrl.Solo();
 			this.dispose();

@@ -1,5 +1,5 @@
 /*Classe Frame initialisant la fenêtre de l'application contenant le PanelJoueur et le PanelGraphe
- *Auteurs : Louis Marouard, Maxime Galmant, Evan Cnaepelnickx, Arthur Lecomte
+*@author  Louis Marouard, Maxime Galmant, Evan Cnaepelnickx, Arthur Lecomte
 */
 
 package vue;

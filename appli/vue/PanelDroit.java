@@ -43,6 +43,6 @@ public class PanelDroit extends JPanel
 		panelPioche2.setVisible(false);
 	}
 
-	public PanelPioche getpanelPioche() { return panelPioche; }
-	public PanelScore  getpanelScore () { return panelScore; }		
+	public PanelPioche getPanelPioche() { return panelPioche; }
+	public PanelScore  getPanelScore () { return panelScore; }		
 }

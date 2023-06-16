@@ -1,3 +1,7 @@
+/*Classe Solo initialisant la fenêtre de l'application contenant le PanelJoueur et le PanelGraphe
+ *@author Louis Marouard, Maxime Galmant, Evan Cnaepelnickx, Arthur Lecomte
+*/
+
 package vue;
 import javax.swing.*;
 import java.awt.*;

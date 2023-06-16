@@ -49,7 +49,7 @@ public class PanelAccueil extends JPanel implements ActionListener
 	
 	public void actionPerformed(ActionEvent e)
 	{
-		if (e.getSource() == this.btnSolo ) {this.ctrl.Solo () ;}
+		if (e.getSource() == this.btnSolo ) {this.ctrl.Solo () ;this.ctrl.getPioche().melanger();}
 		if (e.getSource() == this.btnMulti) {this.ctrl.Multi() ;}
 		if (e.getSource() == this.btnTest ) {this.ctrl.Test () ;}
 	}

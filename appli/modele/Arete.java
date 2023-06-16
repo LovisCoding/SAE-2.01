@@ -1,3 +1,7 @@
+/* Classe Arete permettant de créer les aretes
+ *@author : Louis Marouard, Maxime Galmant, Evan Cnaepelnickx, Arthur Lecomte  Louis Marouard, Maxime Galmant, Evan Cnaepelnickx, Arthur Lecomte
+*/
+
 package modele;
 
 import java.awt.Color;
@@ -6,11 +10,11 @@ import controleur.Controleur;
 
 public class Arete
 {
-	private int	    num;
-	private Ile 	ile1;
-	private Ile 	ile2;
-	private int 	valeur;
-	private Color 	couleur;
+	private int	  num;
+	private Ile   ile1;
+	private Ile   ile2;
+	private int   valeur;
+	private Color couleur;
 
 	public Arete(int num, Ile ile1, Ile ile2) 
 	{
@@ -79,22 +83,27 @@ public class Arete
 	public boolean bonneCouleur(Controleur ctrl)
 	{
 		// Vérification de la couleur de l'ile avec la carte
-		String couleur = ctrl.getFrameAccueil().getFrameSolo().getpanelDroit().getpanelPioche().getTypeCouleur();
+		String couleur = ctrl.getFrameAccueil().getFrameSolo().getpanelDroit().getPanelPioche().getTypeCouleur();
 		System.out.println("Couleur : " + couleur);
 		if (((this.getIle1().getCouleur().equals(couleur) && (this.getIle2() == ctrl.getGraphe().getIleArrivee() 
 			|| this.getIle2() == ctrl.getGraphe().getIleDepart()))
 			|| (this.getIle2().getCouleur().equals(couleur) && (this.getIle1() == ctrl.getGraphe().getIleArrivee() 
-			|| this.getIle1() == ctrl.getGraphe().getIleDepart()))) && couleur != "Joker") {
+			|| this.getIle1() == ctrl.getGraphe().getIleDepart()))) && couleur != "Joker")
+		{
 			System.out.println("Nom île 1: " + this.getIle1().getNom() + ", couleur: " + this.getIle1().getCouleur());
 			System.out.println("Nom île 2: " + this.getIle2().getNom() + ", couleur: " + this.getIle2().getCouleur());
 			System.out.println("La couleur de l'île n'est pas la même que la carte ou l'île n'est pas l'île de départ/arrivée");
 			return true ;
 		}
+
 		else if (this.getIle1().getNom().equals("Mutaa") && this.getIle2().getCouleur().equals(couleur) 
 			|| this.getIle2().getNom().equals("Mutaa") && this.getIle1().getCouleur().equals(couleur))
+
 			return true;
+
 		else if (this.getIle1().getNom().equals("Ticó") && this.getIle2().getCouleur().equals(couleur) 
 			|| this.getIle2().getNom().equals("Ticó") && this.getIle1().getCouleur().equals(couleur))
+			
 			return true;
 
 		return false;

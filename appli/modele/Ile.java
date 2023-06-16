@@ -1,3 +1,7 @@
+/*Classe Ile qui permet de créer les iles
+ *@author Louis Marouard, Maxime Galmant, Evan Cnaepelnickx, Arthur Lecomte
+*/
+
 package modele;
 import java.awt.Toolkit;
 import java.util.ArrayList;
@@ -5,10 +9,6 @@ import java.util.List;
 import java.awt.Image;
 import java.awt.Color;
 import java.awt.image.BufferedImage;
-
-/**
- * Iles
- */
 
 public class Ile 
 {
@@ -35,15 +35,15 @@ public class Ile
 		this.estSelectionne = false;
 	}
 
-	public String 	getNom() 			{return this.nom			;}
-	public String 	getCouleur() 		{return this.couleur		;}
-	public boolean 	estSelectionne() 	{return this.estSelectionne	;}
-	public int 		getCoCentreX() 		{return this.coCentreX		;}
-	public int 		getCoCentreY() 		{return this.coCentreY		;}
-	public int 		getPosImageX() 		{return this.posImageX		;}
-	public int 		getPosImageY() 		{return this.posImageY		;}
-	public Image 	getImage() 			{return this.image			;}
-	public int 		getGroupIles() 		{return this.groupIles		;}
+	public String 	getNom() 		 { return this.nom			  ;}
+	public String 	getCouleur()     { return this.couleur		  ;}
+	public boolean 	estSelectionne() { return this.estSelectionne ;}
+	public int 		getCoCentreX() 	 { return this.coCentreX	  ;}
+	public int 		getCoCentreY() 	 { return this.coCentreY	  ;}
+	public int 		getPosImageX() 	 { return this.posImageX	  ;}
+	public int 		getPosImageY() 	 { return this.posImageY	  ;}
+	public Image 	getImage() 		 { return this.image		  ;}
+	public int 		getGroupIles() 	 { return this.groupIles	  ;}
 
 	public void 	setEstSelectionne(boolean estSelectionne) 	{this.estSelectionne = estSelectionne;}
 
