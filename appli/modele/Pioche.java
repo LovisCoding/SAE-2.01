@@ -68,6 +68,8 @@ public class Pioche
 	}
 
 	public int taillePioche() { return lstImageP.size(); }
+	public ArrayList<ImageIcon> getLstImageP() { return lstImageP; }
+	public ArrayList<ImageIcon> getLstImageS() { return lstImageS; }
 
 	public boolean estVide() { return lstImageP.isEmpty(); }
 

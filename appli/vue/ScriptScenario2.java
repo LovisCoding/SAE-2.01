@@ -1,7 +1,3 @@
-/* Classe ScriptScenario2 qui permet de charger le 2eme scénario du jeu
- *@author Louis Marouard, Maxime Galmant, Evan Cnaepelnickx, Arthur Lecomte
-*/
-
 package vue;
 
 import controleur.Controleur;
@@ -16,79 +12,67 @@ public class ScriptScenario2
 
 	public ScriptScenario2(Controleur ctrl)
 	{
+
 		this.ctrl =ctrl;
 
-		this.ctrl.getJoueur().setCouleurJoueur(Color.RED); //Couleur rouge
+		this.ctrl.getJoueur().setRdmColor1(0); //Couleur rouge
 
 		Graphe g = this.ctrl.getGraphe();
-		for (Ile i : g.getEnsIle())
+		for (Arete ac : g.getEnsArete())
 		{
-			if (i.getNom().equals("Ticó")) { g.setIleDepart(i); }
+			if (ac.getIle1().getNom().equals("Ticó"))
+				g.setIleDepart(ac.getIle1());
 
-			for (Ile i2 : g.getEnsIle())
+			if (ac.getIle1().getNom().equals("Ticó") && ac.getIle2().getNom().equals("Laçao")
+				|| ac.getIle1().getNom().equals("Laçao") && ac.getIle2().getNom().equals("Ticó"))
 			{
-				if (i.getNom().equals("Ticó") && i2.getNom().equals("Laçao"))
-				{
-					Arete a = new Arete(1,i, i2);
-					g.ajouterAreteColorer(a);
-					g.setIleDepart(i);
-					g.setIleArrivee(i2);
-				}
+				g.ajouterAreteColorer(ac);
 			}
 		}
 
-		for (Ile i : g.getEnsIle())
+		for (Arete ac : g.getEnsArete())
 		{
-			for (Ile i2 : g.getEnsIle())
+			if (ac.getIle1().getNom().equals("Milaù") && ac.getIle2().getNom().equals("Laçao")
+				|| ac.getIle1().getNom().equals("Laçao") && ac.getIle2().getNom().equals("Milaù"))
 			{
-				if (i.getNom().equals("Milaù") && i2.getNom().equals("Laçao"))
-				{
-					Arete a = new Arete(2,i, i2);
-					g.ajouterAreteColorer(a);
-					g.setIleArrivee(i);
-				}
+				g.ajouterAreteColorer(ac);
 			}
 		}
 
-		for (Ile i : g.getEnsIle())
+		for (Arete ac : g.getEnsArete())
 		{
-			for (Ile i2 : g.getEnsIle())
+			if (ac.getIle1().getNom().equals("Ticó") && ac.getIle2().getNom().equals("Kita")
+				|| ac.getIle1().getNom().equals("Kita") && ac.getIle2().getNom().equals("Ticó"))
 			{
-				if (i.getNom().equals("Milaù") && i2.getNom().equals("Mutaa"))
-				{
-					Arete a = new Arete(3,i, i2);
-					g.ajouterAreteColorer(a);
-					g.setIleArrivee(i2);
-				}
+				g.ajouterAreteColorer(ac);
 			}
 		}
 
-		for (Ile i : g.getEnsIle())
+		for (Arete ac : g.getEnsArete())
 		{
-			for (Ile i2 : g.getEnsIle())
+			if (ac.getIle1().getNom().equals("Khont-Rolah") && ac.getIle2().getNom().equals("Kita")
+				|| ac.getIle1().getNom().equals("Kita") && ac.getIle2().getNom().equals("Khont-Rolah"))
 			{
-				if (i.getNom().equals("Khont-Rolah") && i2.getNom().equals("Mutaa"))
-				{
-					Arete a = new Arete(4,i, i2);
-					g.ajouterAreteColorer(a);
-					g.setIleArrivee(i);
-				}
+				g.ajouterAreteColorer(ac);
 			}
 		}
 
-		for (Ile i : g.getEnsIle())
+		for (Arete ac : g.getEnsArete())
 		{
-			for (Ile i2 : g.getEnsIle())
-			{
-				if (i.getNom().equals("Khont-Rolah") && i2.getNom().equals("Kita"))
+				if (ac.getIle1().getNom().equals("Khont-Rolah") && ac.getIle2().getNom().equals("Mutaa")
+					|| ac.getIle1().getNom().equals("Mutaa") && ac.getIle2().getNom().equals("Khont-Rolah"))
 				{
-					Arete a = new Arete(5,i, i2);
-					g.ajouterAreteColorer(a);
-					g.setIleArrivee(i2);
+					g.ajouterAreteColorer(ac);
 				}
-			}
 		}
 
-		this.ctrl.getFrameAccueil().getFrameSolo().getPanelIles().update();
+		this.ctrl.getPioche().getLstImageP().add(this.ctrl.getPioche().getLstImageP().remove(1));
+		this.ctrl.getPioche().getLstImageS().clear();
+
+		for (int i = 0; i < 4; i++)
+			this.ctrl.getPioche().getLstImageS().add(this.ctrl.getPioche().getLstImageP().remove(0));
+
+		this.ctrl.getFrameAccueil().getFrameSolo().getPanelIles().repaint();
 	}
+
 }
