@@ -16,6 +16,7 @@ public class Graphe
 	private List<Arete>  	ensArete ;
 	private List<Ile> 		ensIles;
 	private List<Arete>		ensAreteColorer;
+	private List<Arete> 		ensAreteScore;
 	private String 			nom;
 	private List<Ile> 		ensIlesVisite;
 	private Ile 			ileDepart;
@@ -30,6 +31,7 @@ public class Graphe
 		this.ensIles       		= new ArrayList<Ile>	();
 		this.ensAreteColorer 	= new ArrayList<Arete>	();
 		this.ensIlesVisite 		= new ArrayList<Ile>	();
+		this.ensAreteScore 		= new ArrayList<Arete>	();
 		this.ileDepart 			= new Ile("Depart", "Blanc" , 0, 0, 0, 0, 0);
 		this.ileArrivee 		= new Ile("Arrivee", "Blanc", 0, 0, 0, 0, 0);
 	}
@@ -53,6 +55,7 @@ public class Graphe
 				this.ensIlesVisite.add(arete.getIle1());
 
 				arete.setCouleur(this.ctrl.getJoueur().getCouleurJoueur());
+				this.ensAreteScore.add(arete);
 			}
 
 			if (this.ctrl.getJoueur().getCouleurJoueur() == Color.BLUE && (arete.getIle1().getNom().equals("Mutaa")
@@ -65,6 +68,7 @@ public class Graphe
 				this.ensIlesVisite.add(arete.getIle1());
 
 				arete.setCouleur(this.ctrl.getJoueur().getCouleurJoueur());
+				this.ensAreteScore.add(arete);
 			}
 		}
 
@@ -78,6 +82,7 @@ public class Graphe
 				System.out.println("Ile depart : " + this.ileDepart.getNom());
 				this.ensAreteColorer.add(arete);
 				arete.setCouleur(this.ctrl.getJoueur().getCouleurJoueur());
+				this.ensAreteScore.add(arete);
 
 			}
 			
@@ -87,6 +92,7 @@ public class Graphe
 				System.out.println("Ile depart : " + this.ileDepart.getNom());
 				this.ensAreteColorer.add(arete);
 				arete.setCouleur(this.ctrl.getJoueur().getCouleurJoueur());
+				this.ensAreteScore.add(arete);
 			}
 
 			if (arete.getIle1() == this.ileArrivee)
@@ -95,6 +101,7 @@ public class Graphe
 				System.out.println("Ile arrivee : " + this.ileArrivee.getNom());
 				this.ensAreteColorer.add(arete);
 				arete.setCouleur(this.ctrl.getJoueur().getCouleurJoueur());
+				this.ensAreteScore.add(arete);
 			}
 
 			else if (arete.getIle2() == this.ileArrivee)
@@ -103,6 +110,7 @@ public class Graphe
 				System.out.println("Ile arrivee : " + this.ileArrivee.getNom());
 				this.ensAreteColorer.add(arete);
 				arete.setCouleur(this.ctrl.getJoueur().getCouleurJoueur());
+				this.ensAreteScore.add(arete);
 			}
 			
 			this.ensIlesVisite.add(arete.getIle2());
@@ -117,6 +125,7 @@ public class Graphe
 	public List<Ile> 	getEnsIlesVisite() 		{return this.ensIlesVisite	;}
 	public Ile 			getIleDepart() 			{return this.ileDepart		;}
 	public Ile 			getIleArrivee() 		{return this.ileArrivee		;}
+	public List<Arete>  getEnsAreteScore() 		{return this.ensAreteScore	;}
 	
 	public void setEnsSommetVisite(List<Ile> ensSommetVisite) {this.ensIlesVisite = ensSommetVisite;}
 	public void setIleDepart(Ile ileDepart) 				  {this.ileDepart = ileDepart		   ;}
@@ -135,6 +144,10 @@ public class Graphe
 		}
 		return false;
 	}
+
+
+
+
 
 	public void reset()
 	{

@@ -17,7 +17,6 @@ public class Controleur
 	private Graphe 			graphe;
 	private Pioche 			pioche;
 	private Joueur 			joueur;
-	private String 			lblBandeau;
 	private Score 			score;
 	private ScriptScenario1 scriptScenario1;
 
@@ -32,10 +31,7 @@ public class Controleur
 		frameAccueil 		= new FrameAccueil(this);
 		this.score 			= new Score(this);
 		
-		this.lblBandeau = "";
-
-		if (!bScenario)
-		this.pioche.melanger();
+		this.scriptScenario1 = null;
 	}
 
 	public static void main(String args[])
@@ -54,7 +50,7 @@ public class Controleur
 	public Pioche getPioche()			  { return this.pioche        ;}
 	public FrameAccueil getFrameAccueil() { return this.frameAccueil  ;}
 	public Score getScore()				  { return this.score         ;}
-	public void setScenario()			  
+	public void setScenario()
 	{
 		bScenario = true;
 		this.scriptScenario1 = new ScriptScenario1(this);

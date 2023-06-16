@@ -21,7 +21,7 @@ public class FrameSolo extends JFrame
 		this.setExtendedState(JFrame.MAXIMIZED_BOTH);
 		this.setBackground(new Color(184,212,228));
 
-		this.setLayout(new BorderLayout());
+		this.setLayout(new BorderLayout(10,10));
 		
 		/*-------------------------*/
 		/* Création des composants */

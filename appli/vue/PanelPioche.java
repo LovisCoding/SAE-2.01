@@ -66,6 +66,59 @@ public class PanelPioche extends JPanel implements ActionListener
 			boolean vide 	= this.ctrl.getPioche().estVide();
 			ImageIcon img 	= this.ctrl.getPioche().piocher();
 
+			String s 	= "" + img;
+			System.out.println("s : " + s);
+			this.type = "";
+
+			switch(s)
+			{
+				case "./images/cartes/carte_jaune_p.png":
+					this.type = "Jaune";
+					break;
+
+				case "./images/cartes/carte_joker_p.png":
+					this.type = "Joker";
+					break;
+
+				case "./images/cartes/carte_marron_p.png":
+					this.type = "Brun";
+					break;
+
+				case "./images/cartes/carte_verte_p.png":
+					this.type = "Vert";
+					break;
+
+				case "./images/cartes/carte_rose_p.png":
+					this.type = "Rose";
+					break;
+
+				case "./images/cartes/carte_joker_s.png":
+					this.type = "Joker";
+					break;
+
+				case "./images/cartes/carte_marron_s.png":
+					this.type = "Brun";
+					break;
+
+				case "./images/cartes/carte_verte_s.png":
+					this.type = "Vert";
+					break;
+
+				case "./images/cartes/carte_rose_s.png":
+					this.type = "Rose";
+					break;
+
+				case "./images/cartes/carte_jaune_s.png":
+					this.type = "Jaune";
+					break;
+
+				default :
+					this.type = "Erreur";
+					break;
+			}
+
+			System.out.println("type : " + this.type);
+
 			if (!vide) {this.btnCarteFace.setIcon(img);}
 
 			if (this.ctrl.getPioche().estVide())
@@ -74,62 +127,6 @@ public class PanelPioche extends JPanel implements ActionListener
 				this.btnCarteDos.setIcon(CarteVide);
 				this.btnCarteDos.setEnabled(false);
 				this.ctrl.getFrameAccueil().getFrameSolo().getpanelDroit().getpanelScore().affichageBoutonTour();
-			}
-
-			else
-			{
-				String s 	= "" + img;
-				System.out.println("s : " + s);
-				this.type = "";
-
-				switch(s)
-				{
-					case "./images/cartes/carte_jaune_p.png":
-						this.type = "Jaune";
-						break;
-
-					case "./images/cartes/carte_joker_p.png":
-						this.type = "Joker";
-						break;
-
-					case "./images/cartes/carte_marron_p.png":
-						this.type = "Brun";
-						break;
-
-					case "./images/cartes/carte_verte_p.png":
-						this.type = "Vert";
-						break;
-
-					case "./images/cartes/carte_rose_p.png":
-						this.type = "Rose";
-						break;
-
-					case "./images/cartes/carte_joker_s.png":
-						this.type = "Joker";
-						break;
-
-					case "./images/cartes/carte_marron_s.png":
-						this.type = "Brun";
-						break;
-
-					case "./images/cartes/carte_verte_s.png":
-						this.type = "Vert";
-						break;
-
-					case "./images/cartes/carte_rose_s.png":
-						this.type = "Rose";
-						break;
-
-					case "./images/cartes/carte_jaune_s.png":
-						this.type = "Jaune";
-						break;
-
-					default :
-						this.type = "Erreur";
-						break;
-				}
-
-				System.out.println("type : " + this.type);
 			}
 		}
 	}
