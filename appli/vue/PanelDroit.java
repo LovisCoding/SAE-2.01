@@ -1,3 +1,7 @@
+/* Classe PanelDroit permettant d'afficher la pioche et les cartes
+ *@author  Louis Marouard, Maxime Galmant, Evan Cnaepelnickx, Arthur Lecomte
+*/
+
 package vue;
 
 import java.awt.BorderLayout;
@@ -22,10 +26,10 @@ public class PanelDroit extends JPanel
 		/* Création des composants */
 		/*-------------------------*/
 
-		this.ctrl 	= ctrl;
-		panelPioche 	= new PanelPioche(this.ctrl);
-		panelScore 	= new PanelScore (this.ctrl);
-		panelPioche2 	= new PanelPioche(this.ctrl);
+		this.ctrl    = ctrl;
+		panelPioche  = new PanelPioche(this.ctrl);
+		panelScore   = new PanelScore (this.ctrl);
+		panelPioche2 = new PanelPioche(this.ctrl);
 
 		this.setLayout(new BorderLayout());
 		
@@ -43,6 +47,6 @@ public class PanelDroit extends JPanel
 		panelPioche2.setVisible(false);
 	}
 
-	public PanelPioche getPanelPioche() { return panelPioche; }
-	public PanelScore  getPanelScore () { return panelScore; }		
+	public PanelPioche getPanelPioche() { return panelPioche ;}
+	public PanelScore  getPanelScore () { return panelScore  ;}
 }

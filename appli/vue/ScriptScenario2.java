@@ -1,3 +1,7 @@
+/* Classe ScriptScenario2 qui permet de charger le 2eme scénario du jeu
+ *@author Louis Marouard, Maxime Galmant, Evan Cnaepelnickx, Arthur Lecomte
+*/
+
 package vue;
 
 import controleur.Controleur;
@@ -14,22 +18,21 @@ public class ScriptScenario2
 	{
 		this.ctrl =ctrl;
 
-
 		this.ctrl.getJoueur().setCouleurJoueur(Color.RED); //Couleur rouge
-		this.ctrl.getFrameAccueil().getFrameSolo().getpanelDroit().getPanelPioche().click();
 
 		Graphe g = this.ctrl.getGraphe();
 		for (Ile i : g.getEnsIle())
 		{
-			if (i.getNom().equals("Ticó"))
-				g.setIleDepart(i);
+			if (i.getNom().equals("Ticó")) { g.setIleDepart(i); }
+
 			for (Ile i2 : g.getEnsIle())
 			{
-				if (i.getNom().equals("Ticó") && i2.getNom().equals("Laçao") 
-					|| i.getNom().equals("Laçao") && i2.getNom().equals("Ticó"))
+				if (i.getNom().equals("Ticó") && i2.getNom().equals("Laçao"))
 				{
-					Arete a = new Arete(1,i, i2, Color.RED);
+					Arete a = new Arete(1,i, i2);
 					g.ajouterAreteColorer(a);
+					g.setIleDepart(i);
+					g.setIleArrivee(i2);
 				}
 			}
 		}
@@ -38,11 +41,11 @@ public class ScriptScenario2
 		{
 			for (Ile i2 : g.getEnsIle())
 			{
-				if (i.getNom().equals("Milaù") && i2.getNom().equals("Laçao") 
-					|| i.getNom().equals("Laçao") && i2.getNom().equals("Milaù"))
+				if (i.getNom().equals("Milaù") && i2.getNom().equals("Laçao"))
 				{
-					Arete a = new Arete(2,i, i2, Color.RED);
+					Arete a = new Arete(2,i, i2);
 					g.ajouterAreteColorer(a);
+					g.setIleArrivee(i);
 				}
 			}
 		}
@@ -51,11 +54,11 @@ public class ScriptScenario2
 		{
 			for (Ile i2 : g.getEnsIle())
 			{
-				if (i.getNom().equals("Milaù") && i2.getNom().equals("Mutaa") 
-					|| i.getNom().equals("Mutaa") && i2.getNom().equals("Milaù"))
+				if (i.getNom().equals("Milaù") && i2.getNom().equals("Mutaa"))
 				{
-					Arete a = new Arete(3,i, i2, Color.RED);
+					Arete a = new Arete(3,i, i2);
 					g.ajouterAreteColorer(a);
+					g.setIleArrivee(i2);
 				}
 			}
 		}
@@ -64,11 +67,11 @@ public class ScriptScenario2
 		{
 			for (Ile i2 : g.getEnsIle())
 			{
-				if (i.getNom().equals("Khont-Rolah") && i2.getNom().equals("Mutaa") 
-					|| i.getNom().equals("Mutaa") && i2.getNom().equals("Khont-Rolah"))
+				if (i.getNom().equals("Khont-Rolah") && i2.getNom().equals("Mutaa"))
 				{
-					Arete a = new Arete(4,i, i2, Color.RED);
+					Arete a = new Arete(4,i, i2);
 					g.ajouterAreteColorer(a);
+					g.setIleArrivee(i);
 				}
 			}
 		}
@@ -77,16 +80,15 @@ public class ScriptScenario2
 		{
 			for (Ile i2 : g.getEnsIle())
 			{
-				if (i.getNom().equals("Khont-Rolah") && i2.getNom().equals("Kita") 
-					|| i.getNom().equals("Kita") && i2.getNom().equals("Khont-Rolah"))
+				if (i.getNom().equals("Khont-Rolah") && i2.getNom().equals("Kita"))
 				{
-					Arete a = new Arete(5,i, i2, Color.RED);
+					Arete a = new Arete(5,i, i2);
 					g.ajouterAreteColorer(a);
+					g.setIleArrivee(i2);
 				}
 			}
 		}
 
-		this.ctrl.getFrameAccueil().getFrameSolo().getpanelIles().repaint();
+		this.ctrl.getFrameAccueil().getFrameSolo().getPanelIles().update();
 	}
-
 }

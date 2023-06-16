@@ -1,10 +1,13 @@
+/* Classe FrameVictoire affichant une fenêtre de victoire
+ *@author  Louis Marouard, Maxime Galmant, Evan Cnaepelnickx, Arthur Lecomte
+*/
+
 package vue;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-
 
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
@@ -31,7 +34,7 @@ public class FrameVictoire extends JFrame
 		/*-------------------------*/
 
 		this.panelV = new JPanel();
-		this.img  = new ImageIcon("./images/bravo.gif");
+		this.img    = new ImageIcon("./images/bravo.gif");
 
 		/*-------------------------------*/
 		/* Positionnement des composants */

@@ -1,4 +1,4 @@
-/*Classe PanelIles qui affiche toute la carte
+/* Classe PanelIles qui affiche toute la carte
  *@author Louis Marouard, Maxime Galmant, Evan Cnaepelnickx, Arthur Lecomte
 */
 
@@ -17,14 +17,14 @@ import modele.Arete;
 
 public class PanelIles extends JPanel implements MouseListener
 {
-	private final double resize = 0.8;
+	private final  double    resize = 0.8;
 
-	private Controleur   ctrl;
-	private JPanel       pnlSolo;
-	private static int nbIleSelectionne =0;
-	private static boolean ile1 = true;
-	private static boolean ile2 = false; 
-	private static boolean finPartie = false;
+	private static int        nbIleSelectionne = 0    ;
+	private static boolean    ile1             = true ;
+	private static boolean    ile2             = false;
+	private static boolean    finPartie        = false;
+	private        Controleur ctrl;
+	private        JPanel     pnlSolo;
 
 	public PanelIles(Controleur ctrl) 
 	{
@@ -64,14 +64,12 @@ public class PanelIles extends JPanel implements MouseListener
 		this.drawArete(g2);
 		this.drawIles(g2);
 		
-		
 		Image titre = Toolkit.getDefaultToolkit().getImage("./images/cinke_terra.png");
 		g.drawImage(titre, 600, 5, (int) (titre.getWidth(this) * 0.4), (int) (titre.getHeight(this) * 0.4), this);
 	}
 
 	public void drawGroupIles(Graphics g)
 	{
-
 		Graphics2D g2 = (Graphics2D) g;
 		g2.setStroke(new BasicStroke(2 ));
 		g2.setColor(new Color(0,204,204));
@@ -80,54 +78,51 @@ public class PanelIles extends JPanel implements MouseListener
 		g2.drawLine(700, 360, 950, 670);
 		g2.drawLine(400, 100, 400, 700);
 	}
+
 	public void drawIles(Graphics g)
 	{
 		double resize = 0.8; // Facteur de redimensionnement
-
 		
 		for (Ile ile : this.ctrl.getGraphe().getEnsIle())
 		{
 			if (nbIleSelectionne > 1) { ile.setEstSelectionne(false); }
+
 			if (ile1)
 			{
 				if (ile.getNom().equals("Ticó") && this.ctrl.getJoueur().getRdmColor1() == 0)
-					{
-						ile.setEstSelectionne(true);
-						this.ctrl.getFrameAccueil().getFrameSolo().getpanelBandeau().setLbl(ile.getNom());
-						ile1 = false;
-						
-					}
-				if (ile.getNom().equals("Mutaa") && this.ctrl.getJoueur().getRdmColor1() == 1)
-					{
-						ile.setEstSelectionne(true);
-						ile1 = false;
-						this.ctrl.getFrameAccueil().getFrameSolo().getpanelBandeau().setLbl(ile.getNom());
-						
-					}
-			
+				{
+					ile.setEstSelectionne(true);
+					this.ctrl.getFrameAccueil().getFrameSolo().getPanelBandeau().setLbl(ile.getNom());
+					ile1 = false;
 				}
+
+				if (ile.getNom().equals("Mutaa") && this.ctrl.getJoueur().getRdmColor1() == 1)
+				{
+					ile.setEstSelectionne(true);
+					ile1 = false;
+					this.ctrl.getFrameAccueil().getFrameSolo().getPanelBandeau().setLbl(ile.getNom());
+				}
+			
+			}
+
 			if (ile2)
 			{
 				ile.setEstSelectionne(false);
+
 				if (ile.getNom().equals("Ticó") && this.ctrl.getJoueur().getRdmColor2() == 0)
-					{
-						ile.setEstSelectionne(true);
-						this.ctrl.getFrameAccueil().getFrameSolo().getpanelBandeau().setLbl(ile.getNom());
-						ile2 = false;
-						
-					}
-				if (ile.getNom().equals("Mutaa") && this.ctrl.getJoueur().getRdmColor2() == 1)
-					{
-						ile.setEstSelectionne(true);
-						ile2 = false;
-						this.ctrl.getFrameAccueil().getFrameSolo().getpanelBandeau().setLbl(ile.getNom());
-						
-					}
-			
+				{
+					ile.setEstSelectionne(true);
+					this.ctrl.getFrameAccueil().getFrameSolo().getPanelBandeau().setLbl(ile.getNom());
+					ile2 = false;
 				}
-				
-			
-			
+
+				if (ile.getNom().equals("Mutaa") && this.ctrl.getJoueur().getRdmColor2() == 1)
+				{
+					ile.setEstSelectionne(true);
+					ile2 = false;
+					this.ctrl.getFrameAccueil().getFrameSolo().getPanelBandeau().setLbl(ile.getNom());
+				}
+			}
 
 			Image imageIle = ile.getImage();
 
@@ -151,9 +146,10 @@ public class PanelIles extends JPanel implements MouseListener
 
 			g.drawString(numero, resizedStringX, resizedStringY);
 
-			if (ile.estSelectionne()) { highlightSelectedIle(g, ile);}
+			if (ile.estSelectionne()) { highlightSelectedIle(g, ile) ;}
 		}
 	}
+
 	private void highlightSelectedIle(Graphics g, Ile ile)
 	{
 		int x = ile.getCoCentreX();
@@ -196,7 +192,7 @@ public class PanelIles extends JPanel implements MouseListener
 		if (image instanceof BufferedImage) {return (BufferedImage) image;}
 
 		BufferedImage bufferedImage = new BufferedImage(image.getWidth(null), image.getHeight(null),
-				BufferedImage.TYPE_INT_ARGB);
+														BufferedImage.TYPE_INT_ARGB 			  );
 
 		Graphics2D g2 = bufferedImage.createGraphics();
 		g2.drawImage(image, 0, 0, null);
@@ -242,7 +238,7 @@ public class PanelIles extends JPanel implements MouseListener
 						System.out.println("Image " + ile.getNom() + " sélectionnée");
 						// this.ctrl.setLbl(ile.getNom());
 						ile.selectionneIle(this.ctrl.getGraphe());
-						this.ctrl.getFrameAccueil().getFrameSolo().getpanelBandeau().setLbl(ile.getNom());
+						this.ctrl.getFrameAccueil().getFrameSolo().getPanelBandeau().setLbl(ile.getNom());
 
 						repaint();
 					}
@@ -319,7 +315,7 @@ public class PanelIles extends JPanel implements MouseListener
 							else { System.out.println("Il n'y a pas d'arête colorée"); }
 
 							// Vérification de la couleur
-							String couleur = ctrl.getFrameAccueil().getFrameSolo().getpanelDroit().getPanelPioche().getTypeCouleur();
+							String couleur = ctrl.getFrameAccueil().getFrameSolo().getPanelDroit().getPanelPioche().getTypeCouleur();
 							if (!tmp.bonneCouleur(ctrl) && couleur != "Joker")
 								return;
 
@@ -375,12 +371,21 @@ public class PanelIles extends JPanel implements MouseListener
 		
 		return false;
 	}
+
 	public void setTour1True()
 	{
 		 ile2 = true;
 	}
+
 	public void setfinPartie(boolean b)
 	{
 		finPartie = b;
 	}
+
+	public void update()
+	{
+		this.repaint();
+	}
+
+
 }

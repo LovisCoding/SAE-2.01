@@ -91,7 +91,7 @@ public class Score
 		
 		else { scoreFinal = scoreTour1 +scoreLigneActuelle; }
 
-		this.ctrl.getFrameAccueil().getFrameSolo().getpanelDroit().getPanelScore().maj(""+nbRegion,""+nbRegionMax,""+(nbRegion*nbRegionMax),""+bonus,""+scoreLigneActuelle,""+scoreFinal);
+		this.ctrl.getFrameAccueil().getFrameSolo().getPanelDroit().getPanelScore().maj(""+nbRegion,""+nbRegionMax,""+(nbRegion*nbRegionMax),""+bonus,""+scoreLigneActuelle,""+scoreFinal);
 	}
 
 	public void prochainTour()
@@ -102,7 +102,7 @@ public class Score
 		bonus = 0;
 		verif = true;
 		ensAreteColoree.clear(); //vide pour le deuxieme tour
-		this.ctrl.getFrameAccueil().getFrameSolo().getpanelIles().setTour1True(); 
+		this.ctrl.getFrameAccueil().getFrameSolo().getPanelIles().setTour1True(); 
 		maj();
 	}
 

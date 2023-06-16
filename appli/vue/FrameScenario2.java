@@ -1,3 +1,7 @@
+/* Classe FrameScenario2 permettant de créer le 2ème scénario
+ *@author  Louis Marouard, Maxime Galmant, Evan Cnaepelnickx, Arthur Lecomte
+*/
+
 package vue;
 
 import controleur.Controleur;

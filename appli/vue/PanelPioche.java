@@ -1,3 +1,7 @@
+/* Classe PanelPioche qui permet de créer un panel contenant la pioche
+ *@author Louis Marouard, Maxime Galmant, Evan Cnaepelnickx, Arthur Lecomte
+*/
+
 package vue;
 
 import javax.swing.*;
@@ -8,25 +12,21 @@ import java.awt.event.ActionEvent;
 
 import controleur.Controleur;
 
-/**
- * PanelPioche
- */
-
 public class PanelPioche extends JPanel implements ActionListener
 {
 
 	private static final ImageIcon CarteDos  = new ImageIcon("./images/cartes/carte_dos.png");
 	private static final ImageIcon CarteVide = new ImageIcon("./images/cartes/empty.png"	);
 
-	private Controleur 	ctrl;
-	private JPanel 		panelPioche;
-	private JButton 	btnCarteDos;
-	private JLabel 		btnCarteFace;
-	private String		type;
+	private Controleur ctrl;
+	private JPanel 	   panelPioche;
+	private JButton    btnCarteDos;
+	private JLabel 	   btnCarteFace;
+	private String	   type;
 
 	public PanelPioche(Controleur ctrl)
 	{
-		this.ctrl = ctrl;
+		this.ctrl   = ctrl;
 		panelPioche = new JPanel();
 		panelPioche.setLayout(new FlowLayout());
 
@@ -38,17 +38,18 @@ public class PanelPioche extends JPanel implements ActionListener
 		this.btnCarteFace = new JLabel(CarteVide);
 
 		//Faire pour que le bouton soit comme un JLabel
-		this.btnCarteDos.setBorderPainted( false );
+		this.btnCarteDos.setBorderPainted    ( false );
 		this.btnCarteDos.setContentAreaFilled( false );
-		this.btnCarteDos.setOpaque(false);
+		this.btnCarteDos.setOpaque           ( false );
 
 
-		panelPioche.add(btnCarteDos);
+		panelPioche.add(btnCarteDos );
 		panelPioche.add(btnCarteFace);
 
 		/*-------------------------------*/
 		/* positionnement des composants */
 		/*-------------------------------*/
+
 		this.add(new JLabel("Pioche"));
 		this.add(panelPioche);
 
@@ -63,10 +64,10 @@ public class PanelPioche extends JPanel implements ActionListener
 	{
 		if(e.getSource() == this.btnCarteDos)
 		{
-			boolean vide 	= this.ctrl.getPioche().estVide();
-			ImageIcon img 	= this.ctrl.getPioche().piocher();
+			boolean vide  = this.ctrl.getPioche().estVide();
+			ImageIcon img = this.ctrl.getPioche().piocher();
 
-			String s 	= "" + img;
+			String s = "" + img;
 			System.out.println("s : " + s);
 			this.type = "";
 
@@ -119,32 +120,30 @@ public class PanelPioche extends JPanel implements ActionListener
 
 			System.out.println("type : " + this.type);
 
-			if (!vide) {this.btnCarteFace.setIcon(img);}
+			if (!vide) { this.btnCarteFace.setIcon(img) ;}
 
 			if (this.ctrl.getPioche().estVide())
 			{
 				System.out.println("Pioche vide");
 				this.btnCarteDos.setIcon(CarteVide);
 				this.btnCarteDos.setEnabled(false);
-				this.ctrl.getFrameAccueil().getFrameSolo().getpanelDroit().getPanelScore().affichageBoutonTour();
+				this.ctrl.getFrameAccueil().getFrameSolo().getPanelDroit().getPanelScore().affichageBoutonTour();
 			}
 		}
 	}
 
-	public String getTypeCouleur() { return this.type; }
+	public String getTypeCouleur() { return this.type ;}
 
 	public void nextRound()
 	{
-		this.btnCarteDos.setIcon(CarteDos);
-		this.btnCarteFace.setIcon(CarteVide);
-		this.btnCarteDos.setEnabled(true);
-		this.ctrl.getPioche().reset();
-		System.out.println("apres reset");
-		System.out.println(this.ctrl.getJoueur().getRdmColor1());
-		this.ctrl.getJoueur().changerCouleur();
-		System.out.println(this.ctrl.getJoueur().getRdmColor1());
-		this.ctrl.getGraphe().reset();
-		this.ctrl.getJoueur().setAJoue(true);
+		this.btnCarteDos .setIcon   ( CarteDos  );
+		this.btnCarteFace.setIcon   ( CarteVide );
+		this.btnCarteDos .setEnabled( true      );
+
+		this.ctrl.getPioche().reset           ();
+		this.ctrl.getJoueur().changerCouleur  ();
+		this.ctrl.getGraphe().reset           ();
+		this.ctrl.getJoueur().setAJoue  ( true );
 	}
 
 	public void click() { this.btnCarteDos.doClick(); }

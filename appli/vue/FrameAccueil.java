@@ -11,11 +11,11 @@ import java.awt.*;
 
 public class FrameAccueil extends JFrame
 {
-	private Controleur    	ctrl;
-	private PanelAccueil 	panelAccueil;
-	private FrameSolo		frameSolo;
-	private FrameMulti		frameMulti;
-	private FrameTest		frameTest;
+	private Controleur			 ctrl;
+	private PanelAccueil		 panelAccueil;
+	private FrameSolo			 frameSolo;
+	private FrameMulti			 frameMulti;
+	private FrameAccueilScenario frameScenario;
 
 	public FrameAccueil(Controleur ctrl)
 	{
@@ -30,10 +30,10 @@ public class FrameAccueil extends JFrame
 		/* Création des composants */
 		/*-------------------------*/
 
-		this.panelAccueil = new PanelAccueil(ctrl);
-		this.frameSolo  = null;
-		this.frameMulti = null;
-		this.frameTest  = null;
+		this.panelAccueil  = new PanelAccueil(ctrl);
+		this.frameSolo     = null;
+		this.frameMulti    = null;
+		this.frameScenario = null;
 
 		/*-------------------------------*/
 		/* Positionnement des composants */
@@ -44,6 +44,7 @@ public class FrameAccueil extends JFrame
 		/*-------------------------------*/
 		/*         Finalisation          */
 		/*-------------------------------*/
+
 		this.panelAccueil.setVisible(true);
 
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); //Fermeture de la fenêtre
@@ -64,11 +65,11 @@ public class FrameAccueil extends JFrame
 
 	public void Test()
 	{
-		this.frameTest = new FrameTest(this.ctrl);
+		this.frameScenario = new FrameAccueilScenario(this.ctrl);
 		this.dispose();
 	}
 
-	public void Accueil()             { new FrameAccueil(this.ctrl) ;}
-	public FrameSolo getFrameSolo()   { return this.frameSolo       ;}
+	public void       Accueil      () { new FrameAccueil(this.ctrl) ;}
+	public FrameSolo  getFrameSolo () { return this.frameSolo       ;}
 	public FrameMulti getFrameMulti() { return this.frameMulti      ;}
 }

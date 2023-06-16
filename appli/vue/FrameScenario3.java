@@ -1,3 +1,7 @@
+/* Classe FrameScenario3 permettant de créer le 3ème scénario
+ *@author  Louis Marouard, Maxime Galmant, Evan Cnaepelnickx, Arthur Lecomte
+*/
+
 package vue;
 
 import controleur.Controleur;

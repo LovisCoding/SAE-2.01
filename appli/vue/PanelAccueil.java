@@ -1,3 +1,7 @@
+/* Classe PanelAccueil permettant de choisir entre les différents modes de jeu
+ *@author  Louis Marouard, Maxime Galmant, Evan Cnaepelnickx, Arthur Lecomte
+*/
+
 package vue;
 
 import javax.swing.JButton;

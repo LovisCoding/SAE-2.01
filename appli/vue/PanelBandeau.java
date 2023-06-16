@@ -1,3 +1,7 @@
+/* Classe PanelBandeau qui permet d'afficher les informations sur les îles et la couleur du joueur courant
+ *@author  Louis Marouard, Maxime Galmant, Evan Cnaepelnickx, Arthur Lecomte
+*/
+
 package vue;
 
 import javax.swing.*;
@@ -5,15 +9,11 @@ import java.awt.*;
 
 import controleur.Controleur;
 
-/**
- * PanelBandeau
- */
-
 public class PanelBandeau extends JPanel //implements ActionListener
 {
 	private static boolean lbl1 = true; //permet de passer de labelIle1 à labelIle2
 	
-	private Controleur 	ctrl;
+	private Controleur  ctrl;
 	private JLabel 		lblIle1;
 	private JLabel 		lblIle2;
 	private JLabel      lblCouleur;

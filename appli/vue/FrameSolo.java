@@ -56,7 +56,7 @@ public class FrameSolo extends JFrame
 		return s;
 	}
 
-	public PanelIles    getpanelIles()    { return this.panelIles    ;}
-	public PanelBandeau getpanelBandeau() { return this.panelBandeau ;}
-	public PanelDroit   getpanelDroit()   { return this.panelDroit   ;}
+	public PanelIles    getPanelIles   () { return this.panelIles    ;}
+	public PanelBandeau getPanelBandeau() { return this.panelBandeau ;}
+	public PanelDroit   getPanelDroit  () { return this.panelDroit   ;}
 }

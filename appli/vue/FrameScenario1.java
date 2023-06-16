@@ -1,3 +1,7 @@
+/* Classe FrameScenario1 permettant de créer le 1er scénario
+ *@author  Louis Marouard, Maxime Galmant, Evan Cnaepelnickx, Arthur Lecomte
+*/
+
 package vue;
 
 import controleur.Controleur;

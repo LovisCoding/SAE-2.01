@@ -1,3 +1,7 @@
+/* Classe FrameMulti qui permet de créer la fenêtre de jeu en mode multijoueur
+ *@author  Louis Marouard, Maxime Galmant, Evan Cnaepelnickx, Arthur Lecomte
+*/
+
 package vue;
 import javax.swing.*;
 import java.awt.*;
@@ -32,7 +36,6 @@ public class FrameMulti extends JFrame
 
 		this.add(panelIles,	BorderLayout.CENTER);
 		this.add(panelDroit, BorderLayout.EAST);
-		
 
 		/*-------------------------------*/
 		/*         Finalisation          */

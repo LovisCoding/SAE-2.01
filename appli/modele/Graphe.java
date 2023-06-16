@@ -127,8 +127,9 @@ public class Graphe
 	public Ile 			getIleArrivee() 	 { return this.ileArrivee	   ;}
 	public List<Arete>  getEnsAreteScore() 	 { return this.ensAreteScore   ;}
 	
-	public void setEnsSommetVisite(List<Ile> ensSommetVisite) {this.ensIlesVisite = ensSommetVisite;}
-	public void setIleDepart(Ile ileDepart) 				  {this.ileDepart = ileDepart		   ;}
+	public void setEnsSommetVisite(List<Ile> ensSommetVisite) {this.ensIlesVisite = ensSommetVisite	;}
+	public void setIleDepart(Ile ileDepart) 				  {this.ileDepart = ileDepart		  	;}
+	public void setIleArrivee(Ile ileArrivee) 				  {this.ileArrivee = ileArrivee	  		;}
 
 	public boolean formeCycle(Arete tmp)
 	{

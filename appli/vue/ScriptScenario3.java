@@ -1,3 +1,7 @@
+/* Classe ScriptScenario3 qui permet de charger le 3eme scénario du jeu
+ *@author Louis Marouard, Maxime Galmant, Evan Cnaepelnickx, Arthur Lecomte
+*/
+
 package vue;
 
 import controleur.Controleur;
@@ -12,16 +16,17 @@ public class ScriptScenario3
 
 	public ScriptScenario3(Controleur ctrl)
 	{
-        this.ctrl = ctrl;
+		this.ctrl = ctrl;
 
-        this.ctrl.getJoueur().setCouleurJoueur(Color.BLUE); //Couleur bleu
-        this.ctrl.getFrameAccueil().getFrameSolo().getpanelDroit().getPanelPioche().click();
+		this.ctrl.getJoueur().setCouleurJoueur(Color.BLUE); //Couleur bleu
+		this.ctrl.getFrameAccueil().getFrameSolo().getPanelDroit().getPanelPioche().click();
 
 		Graphe g = this.ctrl.getGraphe();
+
 		for (Ile i : g.getEnsIle())
 		{
-			if (i.getNom().equals("Mutaa"))
-				g.setIleDepart(i);
+			if (i.getNom().equals("Mutaa")) { g.setIleDepart(i); }
+			
 			for (Ile i2 : g.getEnsIle())
 			{
 				if (i.getNom().equals("Mutaa") && i2.getNom().equals("Massao")
@@ -46,6 +51,6 @@ public class ScriptScenario3
 			}
 		}
 
-        this.ctrl.getFrameAccueil().getFrameSolo().getpanelIles().repaint();
-    }
+		this.ctrl.getFrameAccueil().getFrameSolo().getPanelIles().repaint();
+	}
 }

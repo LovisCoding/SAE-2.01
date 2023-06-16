@@ -83,7 +83,7 @@ public class Arete
 	public boolean bonneCouleur(Controleur ctrl)
 	{
 		// Vérification de la couleur de l'ile avec la carte
-		String couleur = ctrl.getFrameAccueil().getFrameSolo().getpanelDroit().getPanelPioche().getTypeCouleur();
+		String couleur = ctrl.getFrameAccueil().getFrameSolo().getPanelDroit().getPanelPioche().getTypeCouleur();
 		System.out.println("Couleur : " + couleur);
 		if (((this.getIle1().getCouleur().equals(couleur) && (this.getIle2() == ctrl.getGraphe().getIleArrivee() 
 			|| this.getIle2() == ctrl.getGraphe().getIleDepart()))

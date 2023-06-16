@@ -46,13 +46,13 @@ public class Joueur
 	{
 		rdmColor1= i;
 		rdmColor2 = 1-rdmColor1;
-		this.ctrl.getFrameAccueil().getFrameSolo().getpanelBandeau().repaint();
+		this.ctrl.getFrameAccueil().getFrameSolo().getPanelBandeau().repaint();
 	}
 	
 	public void changerCouleur()
 	{
 		this.couleurJoueur 		= tabCoul[rdmColor2];
 		this.changementCouleur 	= true;
-		this.ctrl.getFrameAccueil().getFrameSolo().getpanelBandeau().repaint();
+		this.ctrl.getFrameAccueil().getFrameSolo().getPanelBandeau().repaint();
 	}
 }
